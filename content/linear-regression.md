@@ -6,13 +6,13 @@ updated = 2024-02-29
 draft = false
 
 [taxonomies]
-tags = ["Mathematics","MachineLearning"]
+tags = ["MachineLearning"]
 [extra]
 math = true
 math_auto_render = true
 keywords = "Math, Matematics, Notation, KaTeX, Mathematical Notation"
 toc = true
-series = "Features"
+series = "MachineLearning"
 +++
 
 ## Purpose
