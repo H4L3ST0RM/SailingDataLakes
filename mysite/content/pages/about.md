@@ -4,11 +4,12 @@ path = "about"
 template = "pages.html"
 draft = false
 +++
+Hello and thank you for visiting my blog!
 
-This site provides a demo for the [abridge theme](https://github.com/Jieiku/abridge) for [Zola](https://www.getzola.org/) the static site generator.
+First a little about myself. I have an educational background in Mathematics, Computer Science, Data Science, as well as Robotics and have been working in the private sector for much of the last 10 years. I’m American
 
-Abridge was created by [Jake G (jieiku)](https://github.com/Jieiku) to be fast and lightweight, using semantic html, a class-light [abridge.css](https://github.com/Jieiku/abridge.css), and No Mandatory JS.
+One of the ways in which I’m  utilizing this blog is to develop a deeper understanding of various methodologies that interest me - a great way to do that is by explaining these ideas to an audience. Hopefully the relationship will be symbiotic in that you, the reader, will also gain a greater understanding of the technical subjects discussed.
 
-Nearly half of the existing Zola MIT themes were inspiration for features and design of this theme.
+The majority of the more technical articles will strive to cover three main points; how to think about the subject intuitively, what the math looks like underneath, and finally, how to apply it in code.
 
-Abridge is licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Other topics will likely be covered as well in this blog, mainly things that fancy my interest. Some topics that will likely garner my attention include sailing, current events, politics, climate & sustainability, the future, the past, and cooking.

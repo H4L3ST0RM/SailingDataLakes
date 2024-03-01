@@ -4,8 +4,8 @@ base_url = "https://abridge.netlify.app"
 # Also set index format = "elasticlunr_javascript", and in [extra] uglyurls = true, integrity = false
 # If you use the npm/node script then all you have to do is set offline = true, and everything else is automatic.
 
-title = "Abridge"
-description = "Abridge is a fast and lightweight Zola theme using semantic html, abridge.css class-light CSS, and No Mandatory JS."
+title = "Sailing Data Lakes"
+description = "Musing and adventures of a Captain Roboto"
 theme = "abridge"
 
 default_language = "en"
@@ -111,8 +111,8 @@ footer_credit = true
 
 ### Uncomment one of the below lines, or neither, depending on which type of logo you want to use:
 #logo = { file="logo.svg", width="32", height="32", alt="Abridge", text="bridge" }
-#textlogo = '<font color="#f90">A</font>bridge'
-textlogo = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f90" viewBox="0 0 96 96" width="28" height="28"><path stroke-width="14" d="M14 99 46 7h4l32 92"/><path stroke-width="9" d="M-3 82c43-26 59-26 102 0"/><path stroke-linecap="round" stroke-width="1.5" d="M94 72v7m-5-9.8v7m-5-9.8v7.1M79 64v7M63 57.7v7m-5-8.2v7m-5-7.8v7m-5-7.2v7m-5-6.7v7m-5-6.3v7m-5-5.8v7M17 64v7m-5-4.6v7m-5-4.2v7M2 72v7"/></svg>bridge'
+textlogo = '<font color="#48738a">Sailing</font>DataLakes'
+#textlogo = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f90" viewBox="0 0 96 96" width="28" height="28"><path stroke-width="14" d="M14 99 46 7h4l32 92"/><path stroke-width="9" d="M-3 82c43-26 59-26 102 0"/><path stroke-linecap="round" stroke-width="1.5" d="M94 72v7m-5-9.8v7m-5-9.8v7.1M79 64v7M63 57.7v7m-5-8.2v7m-5-7.8v7m-5-7.2v7m-5-6.7v7m-5-6.3v7m-5-5.8v7M17 64v7m-5-4.6v7m-5-4.2v7M2 72v7"/></svg>bridge'
 
 sitedesc = false # enables or disables the display of the site description below the logo.
 headhr = false # show or hide horizontal rule below header
@@ -131,9 +131,9 @@ foothr = true # show or hide horizontal rule above footer
 ###############################################################################
 
 title_separator = "|"  # Separator between title and title_addition, set as |, -, _, etc
-title_addition = "Fast & Lightweight Zola Theme" # a default value for title addition
-author = "Jake G" # Put Your Name here
-keywords = "Abridge, Abridge.css, Zola, Theme, Zola Theme, getzola, Semantic Html, Fast, lightweight" # used for the primary site index
+title_addition = "" # a default value for title addition
+author = "Captain Roboto" # Put Your Name here
+keywords = "Captain Roboto, Sailing, Data, Machine Learning, Sailing Data Lakes" # used for the primary site index
 banner = "banner.png" # Used as default image for OpenGraph/Twitter if page specific image is undefined.
 twitter_meta = "your-user-name" # for SEO: twitter:site and twitter:creator
 google = "Your Google Site verification code."
@@ -258,13 +258,13 @@ pwa_BASE_CACHE_FILES = "'/js/theme.min.js','/js/theme_light.min.js','/abridge.cs
 ###############################################################################
 
 favicon_theme_color = "#333333"
-favicon_ms_color = "#333333"
+#favicon_ms_color = "#333333"
 favicon_mask = "safari-pinned-tab.svg" # safari-pinned-tab.svg
 favicon_mask_color = "#ff9900"
-favicon_svg = "favicon.svg" # favicon.svg
-favicon180 = "apple-touch-icon.png" # apple-touch-icon.png
-favicon32 = "favicon-32x32.png" # favicon-32x32.png
-favicon16 = "favicon-16x16.png" # favicon-16x16.png
+#favicon_svg = "favicon.svg" # favicon.svg
+#favicon180 = "apple-touch-icon.png" # apple-touch-icon.png
+#favicon32 = "favicon-32x32.png" # favicon-32x32.png
+#favicon16 = "favicon-16x16.png" # favicon-16x16.png
 
 
 ###############################################################################
@@ -323,6 +323,7 @@ favicon16 = "favicon-16x16.png" # favicon-16x16.png
 ### For externally loaded Fonts, make sure to include the FULL url including the https prefix:
 
 #fonts = [ {url = "https://fonts.googleapis.com/css?family=Roboto:400,700,italic|Roboto+Mono:400,italic"} ]
+fonts = [ {url = "https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"} ]
 
 ### Local fonts are defined in the css, https://github.com/Jieiku/abridge/tree/master/COPY-TO-ROOT-SASS/fonts/_Arimo.scss
 ### To load a local font resource, look at the bottom of this file: https://github.com/Jieiku/abridge/blob/master/COPY-TO-ROOT-SASS/abridge.scss

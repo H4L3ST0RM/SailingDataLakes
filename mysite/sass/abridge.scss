@@ -12,7 +12,7 @@
   $syntax-mode: "auto",// Force syntax mode: auto, dark, light
   $switcherDefault: "dark",// default nojs switcher mode: dark, light (make sure to also set js_switcher_default in config.toml)
 
-  $color: "orange",// color template to use/override: orange, blue, blueshade
+  $color: "blueshade",// color template to use/override: orange, blue, blueshade
 
   $color-syntax: "abridge",// syntax color template to use/override: abridge,
   $syntax: true,//syntax highlighting for Code Blocks.
@@ -49,13 +49,13 @@
   //$icon-x: true,// x symbol, used to close search results page.
   //$icon-search: true,//search, spyglass search button in search box.
   //$icon-adjust: true,//theme switcher dark/light toggle button.
-  //$icon-angll: true,//pagination, goto first page
+  //$icon-angll: false,//pagination, goto first page
   //$icon-angl: true,//pagination, goto previous page
   //$icon-angr: true,//pagination, goto next page
   //$icon-angrr: true,//pagination, goto last page
   //$icon-angu: true,//back to top button, appears after scrolling down.
   //$icon-world: true,//language select menu
-  //$icon-copy: true,//copy to clipboard, for code blocks.
+  $icon-copy: true,//copy to clipboard, for code blocks.
 
   //$icon-ffolder: false,
   //$icon-folder: false,// categories folder
@@ -90,9 +90,9 @@
   /// Light Colors
   //$f1: #333,// Font Color Primary
   //$f2: #222,// Font Color Headers
-  //$c1: #fff,// Background Color Primary
-  //$c2: #eee,// Background Color Secondary
-  //$c3: #ddd,// Table Rows, Block quote edge, Borders
+  $c1: #ffefe0,// Background Color Primary
+  $c2: #e8f2ff,// Background Color Secondary
+  $c3: #9fc6f5,// Table Rows, Block quote edge, Borders
   //$c4: #555,// Disabled Buttons, Borders, mark background
   //$a1: #c40,// link color
   //$a2: #e60,// link hover/focus color
@@ -201,5 +201,5 @@
  *     make sure to have the relevant woff2 fonts in your static/fonts folder
  *   I measured the least Cumulative Layout Shift with: Roboto, Lato, Arimo
  *****************************************************************************/
-//@use "fonts/Roboto";
+@use "fonts/courier_prime";
 //@use "fonts/Arimo";
