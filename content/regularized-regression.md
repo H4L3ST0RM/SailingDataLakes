@@ -1,9 +1,9 @@
 +++
-title = "Linear Regression"
-description = "An overview of how linear regression works"
-date = 2024-02-29
-updated = 2024-02-29
-draft = false
+title = "Regularization & Regression"
+description = "An overview of how Regularization works with regression"
+date = 2024-03-01
+updated = 2024-03-01
+draft = true
 
 [taxonomies]
 tags = ["MachineLearning"]
@@ -15,10 +15,42 @@ toc = true
 series = "MachineLearning"
 +++
 
-## Purpose
-In this article, we will cover what linear regression is, what the underlying mathematics looks like, common metrics to evaluate the model, along with an example of how to use it.
+## Purose
 
-## What is Linear Regression
+# What is Regularization
+Regularization is a class of methodologies used in machine learning with the intent of preventing overfitting a model. In essence, regularization is trying to prevent unnecessarily complex models, as well as models overly reliant on a relatively few number of features.
+
+There are two primary approaches for regularization in linear regression; Ridge, and LASSO. Ridge regression applies L2 normalization, and LASSO applies L1 normalization. 
+
+As illustrated in the linear regression article, typical linear regression is trying to minimze the difference between the predicted value, and the actual value, ie. $y - \hat{y}$.
+
+With L1 normalizaiton, we are trying to minimize the difference, as well as the sum of absolute values of the coefficents ($\beta$). This pushes the less useful. coefficents towards zero, and gives the model built in feature selection.
+
+With L2 normalizaiton, we are trying to minimize the difference, as well as the sum of squared values of the coefficents ($\beta$). This pushes the less useful coefficents to below one, making it more difficult for a subset of features dominating the model.
+
+## Ridge Regression
+
+With ridge regression, we add an L2 regularization term. Regularization terms are meant to prevent overfitting data by penalizing large weights. It works by taking the L2 norm (otherwise known as the euclidean distance) of the weights and adding them to the loss function. We will also have a $\lambda$ coefficient on the l2-norm, to be able to tune the weight of the penalty on the overall loss.
+
+L2 regularization is defined as follows:
+$$norm_2(\vec{\beta})=||\vec{\beta}||_2 = \beta^T\beta$$
+
+The resulting objective functions comes out as follows:
+$$\vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2} + \lambda |\beta|$$
+$$L(D,\vec{\beta})=||X\vec{\beta} - Y||^2$ + \lambda||\beta||_2$$
+$$=(\vec{X}\vec{\beta}-\vec{Y})^T(\vec{X}\vec{\beta}-\vec{Y}) + \lambda\beta^T\beta$$
+
+$$=Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}^TX^TX\vec{\beta}+\lambda\beta^T\beta$$
+
+Get gradient w.r.t. $\vec{\beta}$
+
+$$\frac{\partial{L(D,\vec{\beta})}}{\partial{\vec{\beta}}} = \frac{\partial{(Y^TY-Y^TX\vec{\beta} - \vec{\beta}^TX^TY + \vec{\beta}^TX^TX\vec{\beta}+\lambda\beta^T\beta)}{\partial{\vec{\beta}}}$$
+$$ \frac{\partial{(Y^TY})}{\partial{\beta}} - \frac{\partial{(Y^TX\vec{\beta})}}{\partial{\beta}} - \frac{\partial{(\vec{\beta}^TX^TY)}}{\partial{\beta}} + \frac{\partial{(\vec{\beta} X^T X \vec{\beta})}}{\partial{\beta}}$$
+$$= -2Y^TX+2\vec{\beta}^TX^TX$$
+$$=-2Y^TX+2\vec{\beta}+2\vec{\beta}^TX^TX$$
+
+
+## What is Ridge Regression
 Linear regression, as the name implies, is a linear model used for making real value predictions. It is a comparatively simple model, that is mathematically sound, easy to explain, and easy to understand. Due to its simplicity, it typically doesn’t require a large amount of data to be a useful model.
 
 It is not uncommon for linear regression to be used as a baseline model, meaning the first model to try and to compare future iterations against, when approaching a new regression problem.  The underlying assumption you must have prior to using this model is that the relationship between the dependent and independent variables is linear.
@@ -47,15 +79,8 @@ Now, to find the values that minimize the function, we take the gradient and set
 Get gradient w.r.t. $\vec{\beta}$
 
 $$\frac{\partial{L(D,\vec{\beta})}}{\partial{\vec{\beta}}} = \frac{\partial{(Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}X^TX\vec{\beta}})}{\partial{\vec{\beta}}}$$
-
-$$ = \frac{\partial{(Y^TY})}{\partial{\beta}} - \frac{\partial{(Y^TX\vec{\beta})}}{\partial{\beta}} - \frac{\partial{(\vec{\beta}^TX^TY)}}{\partial{\beta}} + \frac{\partial{(\vec{\beta} X^T X \vec{\beta})}}{\partial{\beta}}$$
-
-$$= 0 - Y^T X - Y^T X + 2 \vec{\beta} X^T X$$
-
-$$= - 2 Y^T X + 2 \vec{\beta} X^T X$$
-
+$$= -2Y^TX+2\vec{\beta}^TX^TX$$
 $$=-2Y^TX+2\vec{\beta}+2\vec{\beta}^TX^TX$$
-
 
 Set gradient to zero.
 
