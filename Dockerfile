@@ -1,4 +1,4 @@
-FROM gcr.io/cloud-builders/git
+FROM gcr.io/cloud-builders/git as git
 ENTRYPOINT ["/bin/bash"]
 COPY . /project
 WORKDIR /project
@@ -6,7 +6,8 @@ RUN git submodule update --init --recursive
 RUN git submodule update --remote --merge
 
 FROM ghcr.io/getzola/zola:v0.18.0 as zola
-COPY . /project
+WORKDIR /
+COPY --from=git /project /project
 WORKDIR /project
 RUN ["zola", "build"]
 
