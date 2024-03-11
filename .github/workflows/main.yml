@@ -26,4 +26,4 @@ jobs:
           PAGES_BRANCH: master
           BUILD_DIR: .
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPOSITORY: h4l3st0rm/h4l3st0rm.github.io
+          REPOSITORY: H4L3ST0RM/SailingDataLakes
