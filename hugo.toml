@@ -131,31 +131,31 @@ author = "authors"
 name = "Github"
 icon = "fa-brands fa-github fa-2x"
 weight = 1
-url = "https://github.com/johnchale/"
+url = "https://github.com/H4L3ST0RM"
 
-[[params.social]]
-name = "Gitlab"
-icon = "fa-brands fa-gitlab fa-2x"
-weight = 2
-url = "https://gitlab.com/johnchale/"
+#[[params.social]]
+#name = "Gitlab"
+#icon = "fa-brands fa-gitlab fa-2x"
+#weight = 2
+#url = "https://gitlab.com/johnchale/"
 
-[[params.social]]
-name = "Twitter"
-icon = "fa-brands fa-x-twitter fa-2x"
-weight = 3
-url = "https://twitter.com/johnchale/"
+#[[params.social]]
+#name = "Twitter"
+#icon = "fa-brands fa-x-twitter fa-2x"
+#weight = 3
+#url = "https://twitter.com/johnchale/"
 
 [[params.social]]
 name = "LinkedIn"
 icon = "fa-brands fa-linkedin fa-2x"
 weight = 4
-url = "https://www.linkedin.com/in/johnchale/"
+url = "https://www.linkedin.com/in/john-c-hale/"
 
-[[params.social]]
-name = "Medium"
-icon = "fa-brands fa-medium fa-2x"
-weight = 5
-url = "https://medium.com/@johndoe"
+#[[params.social]]
+#name = "Medium"
+#icon = "fa-brands fa-medium fa-2x"
+#weight = 5
+#url = "https://medium.com/@johndoe"
 
 [[params.social]]
 name = "RSS"
