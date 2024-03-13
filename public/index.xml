@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>johndoe</title>
+    <title>Sailing Data Lakes</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content on johndoe</description>
+    <description>Recent content on Sailing Data Lakes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Tue, 12 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linear Regression</title>
+      <link>http://localhost:1313/posts/linear-regression/</link>
+      <pubDate>Tue, 12 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linear-regression/</guid>
+      <description>Purpose Link to heading In this article, we will cover what linear regression is, what the underlying mathematics looks like, common metrics to evaluate the model, along with an example of how to use it.&#xA;What is Linear Regression Link to heading Linear regression, as the name implies, is a linear model used for making real value predictions. It is a comparatively simple model, that is mathematically sound, easy to explain, and easy to understand.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>Hello and thank you for visiting my blog!&#xA;First a little about myself.I have an educational background in Mathematics, Computer Science, Data Science, as well as Robotics and have been working in the private sector for much of the last 10 years. I’m American&#xA;One of the ways in which I’m utilizing this blog is to develop a deeper understanding of various methodologies that interest me - a great way to do that is by explaining these ideas to an audience.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/</guid>
+      <description>John C. Hale Link to heading 1 MyAddress email@example.com MyTown 1000 @twitter_handle MyCountry 1800 my-phone-nr&#xA;Education Link to heading 2020 M.S. Data Science | Texas Tech University 2017 B.S. Computer Science | Texas Tech University B.S. Mathematics | Texas Tech University Experience Link to heading Data Scientist at Acorns | 2022 Feb - Present&#xA;Short text containing the type of work done, results obtained, lessons learned and other remarks. Can also include lists and links:</description>
+    </item>
   </channel>
 </rss>

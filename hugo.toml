@@ -1,5 +1,5 @@
 baseURL = "http://www.example.com"
-title = "johndoe"
+title = "Sailing Data Lakes"
 theme = "hugo-coder"
 languageCode = "en"
 defaultContentLanguage = "en"
@@ -12,15 +12,15 @@ enableEmoji = true
 noClasses = false
 
 [params]
-author = "John Doe"
+author = "John C Hale"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
-description = "John Doe's personal website"
+description = "John C Hale's personal website"
 keywords = "blog,developer,personal"
-info = ["Full Stack DevOps", "Magician"]
+info = ["Data Scientist", "Sailor"]
 avatarURL = "images/avatar.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
-since = 2019
+since = 2024
 # Git Commit in Footer, uncomment the line below to enable it
 commit = "https://github.com/luizdepra/hugo-coder/tree/"
 # Right To Left, shift content direction for languagues such as Arabic
@@ -131,25 +131,25 @@ author = "authors"
 name = "Github"
 icon = "fa-brands fa-github fa-2x"
 weight = 1
-url = "https://github.com/johndoe/"
+url = "https://github.com/johnchale/"
 
 [[params.social]]
 name = "Gitlab"
 icon = "fa-brands fa-gitlab fa-2x"
 weight = 2
-url = "https://gitlab.com/johndoe/"
+url = "https://gitlab.com/johnchale/"
 
 [[params.social]]
 name = "Twitter"
 icon = "fa-brands fa-x-twitter fa-2x"
 weight = 3
-url = "https://twitter.com/johndoe/"
+url = "https://twitter.com/johnchale/"
 
 [[params.social]]
 name = "LinkedIn"
 icon = "fa-brands fa-linkedin fa-2x"
 weight = 4
-url = "https://www.linkedin.com/in/johndoe/"
+url = "https://www.linkedin.com/in/johnchale/"
 
 [[params.social]]
 name = "Medium"
@@ -166,7 +166,7 @@ rel = "alternate"
 type = "application/rss+xml"
 
 [languages.en]
-languageName = ":uk:"
+languageName = ":us:"
 
 [[languages.en.menu.main]]
 name = "About"
@@ -182,6 +182,11 @@ url = "posts/"
 name = "Projects"
 weight = 3
 url = "projects/"
+
+[[languages.en.menu.main]]
+name = "Resume"
+weight = 3
+url = "resume/"
 
 [[languages.en.menu.main]]
 name = "Contact me"
