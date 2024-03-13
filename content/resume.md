@@ -4,6 +4,7 @@ description = "My Work Experience"
 date = "2014-03-12"
 aliases = ["resume", "cv", "work-experience"]
 author = "John C Hale"
+draft = true
 +++
 John C. Hale
 ============
