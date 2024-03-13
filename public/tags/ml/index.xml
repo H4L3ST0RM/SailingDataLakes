@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ml on Sailing Data Lakes</title>
+    <link>http://localhost:1313/tags/ml/</link>
+    <description>Recent content in Ml on Sailing Data Lakes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 12 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ml/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linear Regression</title>
+      <link>http://localhost:1313/posts/linear-regression/</link>
+      <pubDate>Tue, 12 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linear-regression/</guid>
+      <description>Purpose Link to heading In this article, we will cover what linear regression is, what the underlying mathematics looks like, common metrics to evaluate the model, along with an example of how to use it.&#xA;What is Linear Regression Link to heading Linear regression, as the name implies, is a linear model used for making real value predictions. It is a comparatively simple model, that is mathematically sound, easy to explain, and easy to understand.</description>
+    </item>
+  </channel>
+</rss>
