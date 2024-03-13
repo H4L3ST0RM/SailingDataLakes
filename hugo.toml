@@ -16,7 +16,7 @@ author = "John C Hale"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
 description = "John C Hale's personal website"
 keywords = "blog,developer,personal"
-info = ["Data Scientist", "Sailor"]
+info = ["Data Scientist"]
 avatarURL = "images/avatar.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
@@ -183,10 +183,10 @@ name = "Projects"
 weight = 3
 url = "projects/"
 
-[[languages.en.menu.main]]
-name = "Resume"
-weight = 3
-url = "resume/"
+#[[languages.en.menu.main]]
+#name = "Resume"
+#weight = 3
+#url = "resume/"
 
 #[[languages.en.menu.main]]
 #name = "Contact me"
