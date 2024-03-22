@@ -107,7 +107,7 @@ data.head()
 Here we're defining our distant measure. We're going to use the standard Euclidean distance
 (L2-Norm).
 
-$$ L2-Norm = \sqrt{\sum{||\vec{a}-\vec{b}||} $$
+$$ L2-Norm = \sqrt{\sum{||\vec{a}-\vec{b}||}} $$
 
 ```python
 
