@@ -51,7 +51,9 @@ regression post. Doing this effectively punishes coefficients for having large
 magnitudes. It pushes the coefficents *towards* zero.
 
 works as follows.
+
 $$
+\vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda\hat{\beta_i}^2
 \vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda\hat{\beta_i}^2
 $$
 
@@ -127,7 +129,7 @@ to find the values of $\beta$.
 The loss function being minimized is
 $$\vec{\hat{\beta}}=
 \min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}}
-\sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda\abs{\hat{\beta}_i}
+\sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda |\hat{\beta}_i|
 $$
 
 ## Example
