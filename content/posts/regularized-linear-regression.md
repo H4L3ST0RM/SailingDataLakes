@@ -53,7 +53,7 @@ magnitudes. It pushes the coefficents *towards* zero.
 works as follows.
 
 $$
-\vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda\hat{\beta_i}^2
+\vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .x_i - y_i)^2}+\lambda\hat{\beta_i}^2
 $$
 
 $$
