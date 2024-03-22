@@ -111,6 +111,8 @@ Now we create our a instance of our linear_regression object and name it $lm$. W
 lm = linear_regression(X, y)
 lm.betas
 ```
+![Coefficient Values](linear-regression-betas.png)
+
 To verify our logic is correct, we can also import the LinearRegression class from sklearn and see if we get the same results.
 
 ```python
