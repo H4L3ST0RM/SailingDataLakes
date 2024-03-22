@@ -53,29 +53,38 @@ magnitudes. It pushes the coefficents *towards* zero.
 works as follows.
 $$
 \vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda\hat{\beta_i}^2
-\newline
+$$
+$$
 L(D,\vec{\beta})=||X\vec{\beta} - Y||^2 + \lambda \bf{I} ||\vec{\beta}||^2
-\newline
+$$
+$$
 =(X\vec{\beta}-y)^T(X\vec{\beta}-Y)+\lambda \bf{I} \vec{\beta}^T \vec{\beta}
-\newline
+$$
+$$
 =Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}^TX^TX\vec{\beta} + \lambda \bf{I} \vec{\beta}^T \vec{\beta}
-\newline
-Get\ gradient\ w.r.t.\ \vec{\beta}
-\newline
+$$
+
+Get gradient w.r.t. $\vec{\beta}$
+$$
 \frac{\partial{L(D,\vec{\beta})}}{\partial{\vec{\beta}}} = \frac{\partial{(Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}^TX^TX\vec{\beta}+\lambda \bf{I} \vec{\beta}^T \vec{\beta}})}{\partial{\vec{\beta}}}
-\newline
+$$
+$$
 = -2Y^TX+2\vec{\beta}^TX^TX + 2 \lambda \bf{I} \vec{\beta}^T
-\newline    
-Set\ gradient\ to\ zero
-\newline
+$$
+Set gradient to zero
+$$
 =-2Y^TX+2\vec{\beta}^TX^TX + \lambda \bf{I} \vec{\beta}^T=0
-\newline
+$$
+$$
 Y^TX=\vec{\beta}^TX^TX + \lambda \bf{I} \vec{\beta}^T
-\newline
+$$
+$$
 Y^TX=\vec{\beta}^T(X^TX + \lambda \bf{I})
-\newline
+$$
+$$
 X^TY=(X^TX + \lambda \bf{I})^T\vec{\beta}
-\newline
+$$
+$$
 \vec{\beta}=(X^TX + \lambda \bf{I} )^{-1}X^TY
 $$
 
