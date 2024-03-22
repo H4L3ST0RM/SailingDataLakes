@@ -4,7 +4,7 @@ title = "Regularized Linear Regression"
 date = "2024-03-12"
 description = "n overview of how regularized linear regression works"
 math = true
-draft = true
+draft = false
 tags = [
 "ml",
 "data science",
@@ -54,36 +54,47 @@ works as follows.
 $$
 \vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda\hat{\beta_i}^2
 $$
+
 $$
 L(D,\vec{\beta})=||X\vec{\beta} - Y||^2 + \lambda \bf{I} ||\vec{\beta}||^2
 $$
+
 $$
 =(X\vec{\beta}-y)^T(X\vec{\beta}-Y)+\lambda \bf{I} \vec{\beta}^T \vec{\beta}
 $$
+
 $$
 =Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}^TX^TX\vec{\beta} + \lambda \bf{I} \vec{\beta}^T \vec{\beta}
 $$
 
 Get gradient w.r.t. $\vec{\beta}$
+
 $$
 \frac{\partial{L(D,\vec{\beta})}}{\partial{\vec{\beta}}} = \frac{\partial{(Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}^TX^TX\vec{\beta}+\lambda \bf{I} \vec{\beta}^T \vec{\beta}})}{\partial{\vec{\beta}}}
 $$
+
 $$
 = -2Y^TX+2\vec{\beta}^TX^TX + 2 \lambda \bf{I} \vec{\beta}^T
 $$
+
 Set gradient to zero
+
 $$
 =-2Y^TX+2\vec{\beta}^TX^TX + \lambda \bf{I} \vec{\beta}^T=0
 $$
+
 $$
 Y^TX=\vec{\beta}^TX^TX + \lambda \bf{I} \vec{\beta}^T
 $$
+
 $$
 Y^TX=\vec{\beta}^T(X^TX + \lambda \bf{I})
 $$
+
 $$
 X^TY=(X^TX + \lambda \bf{I})^T\vec{\beta}
 $$
+
 $$
 \vec{\beta}=(X^TX + \lambda \bf{I} )^{-1}X^TY
 $$
