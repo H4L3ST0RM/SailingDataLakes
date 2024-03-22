@@ -62,7 +62,7 @@ L(D,\vec{\beta})=||X\vec{\beta} - Y||^2 + \lambda \bf{I} ||\vec{\beta}||^2
 \newline
 Get\ gradient\ w.r.t.\ \vec{\beta}
 \newline
-frac{\partial{L(D,\vec{\beta})}}{\partial{\vec{\beta}}} = \frac{\partial{(Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}^TX^TX\vec{\beta}+\lambda \bf{I} \vec{\beta}^T \vec{\beta}})}{\partial{\vec{\beta}}}
+\frac{\partial{L(D,\vec{\beta})}}{\partial{\vec{\beta}}} = \frac{\partial{(Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}^TX^TX\vec{\beta}+\lambda \bf{I} \vec{\beta}^T \vec{\beta}})}{\partial{\vec{\beta}}}
 \newline
 = -2Y^TX+2\vec{\beta}^TX^TX + 2 \lambda \bf{I} \vec{\beta}^T
 \newline    
