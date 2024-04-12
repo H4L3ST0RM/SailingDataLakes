@@ -217,6 +217,6 @@ plt.title("Predicting Weight from Height")
 
 We discussed what linear regression was intuitively, mathematically, and demonstrated the concepts with coded examples. We then went on to discuss some key metrics surrounding linear regression in detail, again with coded examples.
 
-I hope this was blog post proves to be as useful to you reading it, as it was to me writing it. I find it incredible how much better one learns when they are put in a position to be a source or teacher on the subject.
+I hope this was blog post proves to be as useful to you reading it, as it was to me writing it. 
 
 Thanks all for reading.
