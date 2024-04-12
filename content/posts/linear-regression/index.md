@@ -320,6 +320,3 @@ I hope this was blog post proves to be as useful to you reading it, as it was to
 Thanks all for reading.
 
 
-```python
-
-```
