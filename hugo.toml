@@ -1,5 +1,5 @@
 baseURL = "http://www.sailingdatalakes.com"
-title = "Sailing Data Lakes"
+title = "SailingDataLakes"
 theme = "hugo-coder"
 languageCode = "en"
 defaultContentLanguage = "en"
