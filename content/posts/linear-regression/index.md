@@ -2,7 +2,7 @@
 authors = ["John C Hale"]
 title = "Linear Regression"
 date = "2024-03-12"
-description = "n overview of how linear regression works"
+description = "An overview of how linear regression works"
 math = true
 tags = [
     "ml",
@@ -15,7 +15,6 @@ categories = [
 ]
 series = ["ML Walkthrough"]
 +++
-
 
 ## Purpose
 In this article, we will cover what linear regression is, what the underlying mathematics looks like, common metrics to evaluate the model, along with an example of how to use it.
@@ -52,7 +51,7 @@ $$\frac{\partial{L(D,\vec{\beta})}}{\partial{\vec{\beta}}} = \frac{\partial{(Y^T
 $$= -2Y^TX+2\vec{\beta}^TX^TX$$
 $$=-2Y^TX+2\vec{\beta}+2\vec{\beta}^TX^TX$$
 
-Set gradient to zero.
+Set gradient to zero and solve for $\hat{\beta}$.
 
 $$-2Y^TX+2\vec{\beta}^TX^TX=0$$
 $$Y^TX=\vec{\beta}^TX^TX$$
@@ -74,24 +73,32 @@ For the example, we are going to use a public dataset containing height and weig
 
 The first thing we need to do, is import our libraries. We are going to use Pandas so that we can read in the data easily. We are importing NumPy so we can matrix and vector manipulations more seamlessly, and we are importing MatPlotLib so we can visualize the results afterwards.
 
+
 ```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
 ```
+
 Here we are reading in the data.
 
+
 ```python
-data = pd.read_csv('./Data_Science/data/weight_height_data.csv',index_col='Index')
 #data = data.sample(n=1000, random_state=1)
-X = data["Height(Inches)"].values
-y = data["Weight(Pounds)"].values
+url = "https://gist.githubusercontent.com/nstokoe/7d4717e96c21b8ad04ec91f361b000cb/raw/bf95a2e30fceb9f2ae990eac8379fc7d844a0196/weight-height.csv"
+data = pd.read_csv(url)
+X = data["Height"].values
+y = data["Weight"].values
 ```
+
 So effectively, the model (or equation) that is constructed for this problem is as follows:
 $$\hat{y} = x_0 \beta_0 + \beta_1$$
 where $x_0$ is the variable that represents Height.
 
 Now that is sorted, we're on to the interesting part. We are building our model object. the ols() function is what actually fits our model paramters (betas) to the data. The predict() function then applies our fitted model to data.
+
+
 
 ```python
 class linear_regression:
@@ -104,23 +111,38 @@ class linear_regression:
         return betas
 
     def predict(self, X):
-        return np.array([np.ones(len(X)),X]).T @ self.betas                         
+        return np.array([np.ones(len(X)),X]).T @ self.betas  
 ```
+
 Now we create our a instance of our linear_regression object and name it $lm$. We pass through the trianing data, $X$ and $y$, and we get a fitted model, with the $\beta$ values outputted below.
+
+
 ```python
 lm = linear_regression(X, y)
 lm.betas
 ```
-![Coefficient Values](linear-regression-betas.png)
+
+
+
+
+    array([-350.73719181,    7.71728764])
+
+
 
 To verify our logic is correct, we can also import the LinearRegression class from sklearn and see if we get the same results.
 
+
+
 ```python
-from sklearn.linear_model import LinearRegression
 model = LinearRegression().fit(X.reshape(-1,1),y)
 print(model.coef_)
 print(model.intercept_)
 ```
+
+    [7.71728764]
+    -350.7371918121411
+
+
 ## Metrics
 
 So, we have a linear regression model, and we've fitted it to some data. That's great, but how do we know how well it is fitted? What metrics should we use to evaluate the model?
@@ -149,6 +171,8 @@ The **Coefficient of determination ($R^2$)** is a ratio of what percentage of th
 $$R^2 = 1 - \frac{RSS}{TSS}$$
 
 Next, let's implement the metrics in our linear regression class we built above.You can see the updated code below.
+
+
 
 ```python
 class linear_regression:
@@ -191,27 +215,53 @@ class linear_regression:
         self.TSS(y)
         self.r_squared(y_hat, y)
 ```
+
 Creating an updated instance of the linear regression class and fitting the same data, we can now see the metrics.
 
-We have a RMSE of ~10, meaning that on average, the difference between the actual value $y_i$ and the predicted value $\hat{y_i}$ is plus or minus 10. Remember we're predicting weight (pounds), so plus or minus 10 lbs, intuitively, is probably not very good.
+We have a RMSE of ~12, meaning that on average, the difference between the actual value $y_i$ and the predicted value $\hat{y_i}$ is plus or minus 12. Remember we're predicting weight (pounds), so plus or minus 10 lbs, intuitively, is probably not very good.
 
-This is further highlighted in the $R^2$ value of 0.25. This implies that our model doesn't account for 75% of the variance in the dependent variable, which is not very great.
+This is further highlighted in the $R^2$ value of 0.86. This implies that our model accounts for 86% of the variance in the dependent variable, which is not too shabby.
+
 
 ```python
 lm = linear_regression(X, y)
 lm.metrics
 ```
+
+
+
+
+    {'MSE': 149.2934839491296,
+     'RMSE': 12.218571272826035,
+     'RSS': 1492934.839491296,
+     'TSS': 10308487.602498457,
+     'r_squared': 0.8551742120609958}
+
+
+
 Below, we visualize the results. We have a scatter plot of all the data points. The blue line is the predicted value of weight, given height. The red lines are plus 10 and minus 10 the predicted value. Illustrating that as the RMSE suggests, the predicted value is usually plus or minus the RMSE of the actual value.
 
+
 ```python
-plt.plot([60,75],[lm.predict([60])-10,lm.predict([75])-10], 'r--')
-plt.plot([60,75],[lm.predict([60])+10,lm.predict([75])+10], 'r--')
-plt.plot([60,75],[lm.predict([60]),lm.predict([75])])
+plt.plot([50,80],[lm.predict([50]),lm.predict([80])],'black')
 plt.scatter(X,y,alpha=0.01)
 plt.xlabel("Height (Inches)")
 plt.ylabel("Weight (Pounds)")
 plt.title("Predicting Weight from Height")
 ```
+
+
+
+
+    Text(0.5, 1.0, 'Predicting Weight from Height')
+
+
+
+
+    
+![png](./linear_regression_15_1.png)
+    
+
 
 ## conclusion
 
@@ -220,3 +270,8 @@ We discussed what linear regression was intuitively, mathematically, and demonst
 I hope this was blog post proves to be as useful to you reading it, as it was to me writing it. 
 
 Thanks all for reading.
+
+
+```python
+
+```
