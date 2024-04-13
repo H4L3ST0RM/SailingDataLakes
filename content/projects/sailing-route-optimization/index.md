@@ -46,7 +46,7 @@ The purpose of this project is to see if an agent can learn to sail a boat the o
 
 The goal is for the agent to be able to sail efficiently to any waypoint, regardless of bearing and wind direction.
 
-[Relative Bearing and Direction](/relative_bearing.jpg)
+[Relative Bearing and Direction](relative_bearing.jpg)
 ## Code
 As with any project, the first step is to import the required libraries.
 
