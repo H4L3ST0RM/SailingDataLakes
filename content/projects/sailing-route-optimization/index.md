@@ -1,3 +1,18 @@
++++
+authors = ["John C Hale"]
+title = "Sailboat Route Optimization with Q-Learning"
+date = "2024-04-13"
+description = "A fun project using Q-Learning to train an agent to sail to a waypoint."
+math = false
+tags = [
+"rl",
+"data science",
+"machine learning",
+"reinforcement learning",
+]
+
++++
+
 # Sailing Route Optimization with Q-Learning
 
 ## Introduction
