@@ -35,7 +35,8 @@ Usually, the race starts going to the upwind mark. This is tricky, because a sai
 2. Since you are closed hauled, any subtle (or major) shift in the wind will have impact on your velocity made good.
 3. When you tack, you temporarily lose velocity, since as you swing your bow across the wind, your sails will not be powered.
 
-<img src="points_of_sail.jpg" width=1024 height=1024/>
+![Points of Sail](points_of_sail.jpg)
+
 
 ## Purpose
 
