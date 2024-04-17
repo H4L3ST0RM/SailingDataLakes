@@ -1,3 +1,21 @@
++++
+authors = ["John C Hale"]
+title = "Linear Regression"
+date = "2024-03-12"
+description = "An overview of how linear regression works"
+math = true
+tags = [
+    "ml",
+    "data science",
+    "machine learning",
+    "regression",
+]
+categories = [
+    "Machine Learning Walkthrough",
+]
+series = ["ML Walkthrough"]
++++
+
 ## Purpose
 In this article, we will cover what linear regression is, what the underlying mathematics looks like, common metrics to evaluate the model, along with an example of how to use it.
 
@@ -313,7 +331,7 @@ plt.title("Predicting Weight from Height")
 
 
     
-![png](./linear_regression_25_1.png)
+![png](./linear_regression_26_1.png)
     
 
 
