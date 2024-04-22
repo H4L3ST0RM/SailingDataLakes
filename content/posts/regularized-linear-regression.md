@@ -4,7 +4,7 @@ title = "Regularized Linear Regression"
 date = "2024-03-12"
 description = "n overview of how regularized linear regression works"
 math = true
-draft = false
+draft = true
 tags = [
 "ml",
 "data science",
