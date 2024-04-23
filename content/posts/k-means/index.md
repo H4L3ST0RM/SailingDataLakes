@@ -1,7 +1,7 @@
 +++
 authors = ["John C Hale"]
 title = "K-Means Clustering & Variants"
-date = "2024-03-12"
+date = "2024-04-22"
 description = "An overview of how K-Means Clustering Works"
 math = true
 draft = false
@@ -9,7 +9,8 @@ tags = [
     "ml",
     "data science",
     "machine learning",
-    "regression",
+    "cluster analysis",
+    "unsupervised learning"
 ]
 categories = [
     "Machine Learning Walkthrough",
