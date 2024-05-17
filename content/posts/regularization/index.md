@@ -1,7 +1,7 @@
 +++
 authors = ["John C Hale"]
 title = "Regularized Linear Regression"
-date = "2024-03-12"
+date = "2024-05-10"
 description = "n overview of how regularized linear regression works"
 math = true
 draft = false
