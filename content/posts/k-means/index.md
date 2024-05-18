@@ -2,7 +2,7 @@
 authors = ["John C Hale"]
 title = "K-Means Clustering & Variants"
 date = "2024-04-22"
-lastmod: "2024-05-18"
+lastmod = "2024-05-18"
 
 description = "An overview of how K-Means Clustering Works"
 math = true
