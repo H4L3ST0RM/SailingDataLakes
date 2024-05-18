@@ -351,10 +351,10 @@ at how similar the observations of a cluster are with other clusters.
 Inertia
 Distance & Similarity
 
-- a :=intra-cluster disances
+- a :=intra-cluster distances
 - b := nearest-cluster distances
 - SC := Silhouette Coefficient
-- K := Number of clusers
+- K := Number of clusters
 - k2 := Nearest Cluster
 - $N^k$ := Number of samples in cluster k
 - $X^k$ := Subset of X observations in cluster k
@@ -367,11 +367,11 @@ Distance & Similarity
 
 To calculate $a$, we take the euclidean between observation $X_i$ and every other observation, $X_j$ assigned to the same cluster. We then average it.
 
-$$a_i = \frac{1}{N} \sum_{k=1}^K \sum_{i=1}^{N^k} \sum_{j=2}^{N^k}[||X_i - X_j||_2 $$
+$$a_i = \frac{1}{N} \sum_{k=1}^K \sum_{i \in C_k} \sum_{j \in C_k}[||X_i - X_j||_2 $$
 
 To calculate $b$, we do the same thing, but instead of the mean euclidean distance between an observation and other observations within its assigned cluster, we get the distances to observations in its closest neighboring cluster, $k2$.
 
-$$b_i = \frac{1}{N} \sum_{k=1}^K \sum_{i=1}^{N^k} \sum_{j=2}^{N^{k2}}[||X_i - X_j||_2 $$
+$$b_i = \frac{1}{N} \sum_{k=1}^K \sum_{i \in C_k} \sum_{j \in C_k}}[||X_i - X_j||_2 $$
 
 $$SC = \sum_i^N \frac{b_i - a_i}{max(b_i,a_i)}$$
 
@@ -444,8 +444,8 @@ Option 2 is to change the value k. How do you select how many clusters there shu
 
 The elbow test involves iterating through multiple values of k, and taking the *interia* each time. Than plotting the inertia, and finding the joint in the graph. It's usually a good bet that the value k where the joint is located is close to the optimal value k.
 
-So what is inertia? Inertia in this sense really calculating is the Within-Cluster Sum of Squares (WCSS). 
-$$WCSS= \frac{1}{K} \sum_k^K \frac{||X_k - C_k||_2}{N^k}$$
+So what is inertia? Inertia, in this case, is the Within-Cluster Sum of Squares (WCSS). 
+$$WCSS= \frac{1}{K} \sum_{k \in C_k} \frac{||X_k - C_k||_2}{N^k}$$
 
 That is to say, taking the average distance between an onbservation in cluster k, and the centroid k for each centroid, and then taking the mean value of the 3 centroid WCSS calcuations.
 
