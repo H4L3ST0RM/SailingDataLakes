@@ -258,13 +258,10 @@ class elasticnet_regression:
         return X.T @ self.betas  
 ```
 
-## Non-Regression Applications
+## Other Applications
 
 Ridge (L2) and LASSO (L1) regularizaiton is used in quite a few other models as well. Neural networks, logistic regression, boosted trees, etc... all have variations that include either L1 or L2 regularization.
 
-For this example, we're going to generate some synthetic data, that should loosely follow $y=1*x+0$, with noise. There are then 10 outliers that are ~100 unites above where they should be.
-
-The outliers were added to show how they impact normal linear regression, and how regularizaiton techninques can help.
 
 ## Conclusion
 
