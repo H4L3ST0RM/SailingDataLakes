@@ -4,7 +4,7 @@ title = "Auto Regression"
 date = "2026-07-03"
 description = "An overview of how Auto Regression models work"
 math = true
-draft = true
+draft = false
 tags = [
     "ml",
     "data science",
