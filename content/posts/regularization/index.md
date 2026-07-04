@@ -2,7 +2,7 @@
 authors = ["John C Hale"]
 title = "Regularized Linear Regression"
 date = "2024-05-10"
-description = "n overview of how regularized linear regression works"
+description = "An overview of how regularized linear regression works"
 math = true
 draft = false
 tags = [
@@ -22,8 +22,6 @@ and regularization. After which, we will discuss the intuition, math, and code
 of the two primary methods of regularizing linear regression; ridge regression, 
 and LASSO regression.
 
-Below were defining each of our classes. We are going to keep them barebones for this exercise, so we can highlight the important parts. Notice that the `predict()` function is the exact same for each class. That is because the underlying model is the same for all of these variations. What is different, is how we define the loss function.
-
 ## Overfitting
 Overfitting usually occurs when a model is overly complex for a given problem 
 or given dataset, and thus able to memorize the training set. This leads to 
@@ -42,6 +40,8 @@ np.set_printoptions(suppress=True, precision=6)
 ```
 
 
+
+Below we're defining each of our classes. We are going to keep them barebones for this exercise, so we can highlight the important parts. Notice that the `predict()` function is the exact same for each class. That is because the underlying model is the same for all of these variations. What is different, is how we define the loss function.
 
 The `fit()` function is where we optimize our parameters, $\beta$. 
 
@@ -71,7 +71,7 @@ class linear_regression:
 ## Regularization
 Regularization encompasses any method that acts to “punish” complexity within a
 model in an effort to prevent overfitting. This can involve adding penalties for 
-heavily weighted model, but there are other methods we will discuss in a future
+heavily weighted models, but there are other methods we will discuss in a future
 article.
 
 Two common tools in regularization of machine learning algorithms are the L1-Norm
@@ -80,16 +80,15 @@ equivalent to Euclidean distance.
 
 ## Ridge Regression
 Ridge regularization (L2-Regularization) effectively works by taking the square
-of the coefficients, summing them together, and then taking the square
-root. The calculation is appended to the cost function discussed in the linear 
+of the coefficients, and summing them together. The calculation is appended to the cost function discussed in the linear 
 regression post. Doing this effectively punishes coefficients for having large 
-magnitudes. It pushes the coefficents *towards* zero.
+magnitudes. It pushes the coefficients *towards* zero.
 
-works as follows.
+The loss function works as follows.
 
 
 $$
-\vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .x_i - y_i)^2}+\lambda\hat{\beta_i}^2
+\vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .x_i - y_i)^2}+\lambda\hat\beta_i^2
 $$
 
 $$
@@ -169,15 +168,15 @@ LASSO regression uses L1-Normalization. So rather than taking the sum of squares
 the coefficients and adding that to the loss the function, we take the sum of absolute
 values of the coefficients.
 
-By doing this, the penalty for coefficient magnitude is linear, versus exponential
+By doing this, the penalty for coefficient magnitude is linear, versus quadratic
 like it was for ridge regression. This has the effect of not just pushing coefficients
 to below 1, but all the way to 0. If the coefficient has a value of 0.5, then it deals
 a penalty of 0.5 with LASSO regression. Whereas with ridge regression, the smaller the coefficient,
-then the penalty gets exponentially smaller. Ie. a coefficient of 0.5 would have a penalty
+the penalty shrinks quadratically. Ie. a coefficient of 0.5 would have a penalty
 of $0.5^2 = 0.25$. 
 
 With that being said, LASSO regression thus works as a method of automatic feature selection,
-since it will push coefficients towards 0, as well as a regularizaiton method!
+since it will push coefficients towards 0, as well as a regularization method!
 
 The downside is that LASSO regression does NOT have a closed form solution, and thus we
 don't have guarantee that we ever find the optimal solution. Since it doesn't have a closed
@@ -224,14 +223,14 @@ Finally we have elastic net regression. It is a combination of both LASSO and ri
 
 $$\vec{\hat{\beta}}=
 \min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}}
-\sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda_1 \hat{\beta}_i^2 + \lambda_2 |\hat{\beta}_i|
+\sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}+\lambda_1 \hat\beta_i^2 + \lambda_2 |\hat{\beta}_i|
 $$
 
-Elastic Net regularization is essentially a generalizaiton of ridge and LASSO regularization.
+Elastic Net regularization is essentially a generalization of ridge and LASSO regularization.
 
-Elasticnet regression does not have a closed form solution either, and thus the `fit()` function looks very similar to lasso regression's. The difference being the loss function. So the `fit()` function is miinimizeing the loss shown above.
+Elasticnet regression does not have a closed form solution either, and thus the `fit()` function looks very similar to lasso regression's. The difference being the loss function. So the `fit()` function is minimizing the loss shown above.
 
-Note that if you set $\lambda 1$ to 0, you have lASSO regression, and if you set $\lambda 2$ to 0, you have ridge regression. If you set both $\lambda 1$ and $\lambda 2$ hyperparameters to 0, you get regular linear regression. 
+Note that if you set $\lambda_1$ to 0, you have LASSO regression, and if you set $\lambda_2$ to 0, you have ridge regression. If you set both $\lambda_1$ and $\lambda_2$ hyperparameters to 0, you get regular linear regression. 
 
 
 ```python
@@ -243,7 +242,7 @@ class elasticnet_regression:
         # Add Bias
         X=np.append(X, np.ones(X.shape[1]).reshape(1,-1), 0).T
         # Define loss function
-        loss_function = lambda betas, X, y, λ1, λ2: np.sum((y - (X @ betas))**2) + λ1 * np.abs(betas).sum() + λ2 * np.square(betas).sum()
+        loss_function = lambda betas, X, y, λ1, λ2: np.sum((y - (X @ betas))**2) + λ1 * np.square(betas).sum() + λ2 * np.abs(betas).sum()
         # Initialize parameters
         betas = np.random.normal(0,.001,X.shape[1])
         # Minimize loss function by adjusting parameters
@@ -260,7 +259,7 @@ class elasticnet_regression:
 
 ## Other Applications
 
-Ridge (L2) and LASSO (L1) regularizaiton is used in quite a few other models as well. Neural networks, logistic regression, boosted trees, etc... all have variations that include either L1 or L2 regularization.
+Ridge (L2) and LASSO (L1) regularization is used in quite a few other models as well. Neural networks, logistic regression, boosted trees, etc... all have variations that include either L1 or L2 regularization.
 
 
 ## Conclusion

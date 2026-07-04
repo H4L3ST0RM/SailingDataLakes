@@ -17,11 +17,11 @@ categories = [
 series = ["ML Walkthrough"]
 +++
 ## Purpose
-the goal of this post is to better understand logistic regression. As usual, we'll walk through the intuition, the math, some code, metrics, and finally an example.
+The goal of this post is to better understand logistic regression. As usual, we'll walk through the intuition, the math, some code, metrics, and finally an example.
 
 ## What is Logistic Regression
 
-Like linear regression, logistic regression is also a linear model, and also like linear regression, it is used for making real value predictions. So where does the logistic piece come in, and how is it a classifier? We basically pick up the standard linear equation, and plug it into a logistic regression. Doing this amounts to predicting the probability that an observation is part of class=0, or class =1. 
+Like linear regression, logistic regression is also a linear model, and also like linear regression, it is used for making real value predictions. So where does the logistic piece come in, and how is it a classifier? We basically pick up the standard linear equation, and plug it into a logistic function. Doing this amounts to predicting the probability that an observation is part of class=0, or class=1. 
 
 Just like how linear regression is a common used as a baseline model for regression problems, logistic regression is a common baseline model for classification problems. It is also a mathematically sound, simple model that does not require a large amount of data.
 
@@ -40,13 +40,13 @@ from scipy.optimize import minimize
 
 ## Math Behind Logistic Regression
 
-So the idea is we want to treat a classification problem as a regression problem. Ie. we want to draw a line through the points. To do this, a straigt line isn't going to cut it. So we need to put our linear model into a nonlinear function, known as a link function. We want this function to be "S" shaped, so it can go through the "1" class of points and the "0" class of points. What would be even better, is if it the regression value has *meaning*. What if, a $\hat{y}$ value of 0.8 means that the observation is 80% likily to be class 1. Or a value 0.2 meant it was 20% likily? That'd be useful, and make it *extremely* interpretable.
+So the idea is we want to treat a classification problem as a regression problem. Ie. we want to draw a line through the points. To do this, a straight line isn't going to cut it. So we need to put our linear model into a nonlinear function, known as a link function. We want this function to be "S" shaped, so it can go through the "1" class of points and the "0" class of points. What would be even better, is if it the regression value has *meaning*. What if, a $\hat{y}$ value of 0.8 means that the observation is 80% likily to be class 1. Or a value 0.2 meant it was 20% likily? That'd be useful, and make it *extremely* interpretable.
 
 Enter Statistics.
 
-The function described above fits the description of a cummulative distribution function (CDF). Let's do a quick detour and describe what this is.
+The function described above fits the description of a cumulative distribution function (CDF). Let's do a quick detour and describe what this is.
 
-Most people are familiar witha Normal distribution. When we think of any statistical distribution, we're usually thinking of a their probability distribution function (PDF). You can see it below.
+Most people are familiar with a Normal distribution. When we think of any statistical distribution, we're usually thinking of their probability distribution function (PDF). You can see it below.
 
 
 ```python
@@ -71,9 +71,9 @@ plt.figure(figsize=(5,5))
     <Figure size 500x500 with 0 Axes>
 
 
-The density function is very similar to a histogram. You can interpret the graph as follows: For any point on the line, the y-axis will indicate the probability of it occuring. So the probability of an observation falling around 0, is roughly 40%, whereas the probability of a point falling at 2 is roughly 10%.
+The density function is very similar to a histogram. You can interpret the graph as follows: For any point on the line, the y-axis will indicate the probability of it occurring. So the probability of an observation falling around 0, is roughly 40%, whereas the probability of a point falling at 2 is roughly 10%.
 
-What is the probability of a point being *less* than 2? This is where the CDF comes in. It turns out, if you take the integral of the PDF, you get the CDF. It looks like the grpah below, for the normal distribution. 
+What is the probability of a point being *less* than 2? This is where the CDF comes in. It turns out, if you take the integral of the PDF, you get the CDF. It looks like the graph below, for the normal distribution. 
 
 
 
@@ -96,7 +96,7 @@ sns.ecdfplot(df,x="x")
     
 
 
-So for the above graph, if x=2, we looke to the y axis to see the probability of values being less than or equal x=2. As illustrated in the graph below.
+So for the above graph, if x=2, we look to the y axis to see the probability of values being less than or equal x=2. As illustrated in the graph below.
 
 
 ```python
@@ -115,16 +115,16 @@ print("In this case, the probability of an observation being less than 2, is ", 
     
 
 
-There is a lot neat math in this, but it is beyond the scope of this blog post to cover it. But alas, let's step off this detour and go back to the original problem. The above function does exactly what we want.
+There is a lot of neat math in this, but it is beyond the scope of this blog post to cover it. But alas, let's step off this detour and go back to the original problem. The above function does exactly what we want.
 
-When the normal CDF is used as the basis for a classifier, it is known as a probit model. The model that is input ino the he logit model is the good old linear model.
+When the normal CDF is used as the basis for a classifier, it is known as a probit model. The model that is input into the probit model is the good old linear model.
 
 $$
 z = \beta_1 x_1 + ... + \beta_n x_n
 $$
 
 $$
-probit(z) = \int{ \frac{1}{\sigma \sqrt{2 \pi}} e^{\frac{z-\mu}{\sigma}^2 } }
+probit(z) = \int_{-\infty}^{z} \frac{1}{\sqrt{2 \pi}} e^{-\frac{t^2}{2}} \, dt
 $$
 
 
@@ -136,7 +136,7 @@ def probit(X):
 So this is great, but the one issue with it is that it can be computationally complicated, especially in the early days of computers. An alternative is the logit model, which happens to be CDF of the logistic distribution. 
 
 Logit model:
-    $$\hat{y}=\frac{1}{1 + e^{\vec{X}^T \vec{\beta}}}$$
+    $$\hat{y}=\frac{1}{1 + e^{-\vec X^T \vec\beta}}$$
 
 
 ```python
@@ -144,7 +144,7 @@ Logit model:
     return logistic.cdf(X) 
 ```
 
-The typical cost function for logistic regression is the Maximum Likilhood estimation (MLE). I would point you to most any Mathematical Statistics textbook for an understanding of what this means. But for our purposes, for the logit model, this amount to the following equation.
+The typical cost function for logistic regression is the Maximum Likelihood estimation (MLE). I would point you to most any Mathematical Statistics textbook for an understanding of what this means. But for our purposes, for the logit model, this amounts to the following equation.
 
 
 Loss Function:
@@ -176,7 +176,7 @@ plt.plot(x,y,alpha=1)
 
 
 
-    [<matplotlib.lines.Line2D at 0x12ae710d0>]
+    [<matplotlib.lines.Line2D at 0x14cc36cd0>]
 
 
 
@@ -188,7 +188,7 @@ plt.plot(x,y,alpha=1)
 
 ## Example
 
-Where going to use two different subsets of the the iris dataset. One will result in a case that is linearly separable, and other will not be. The iris dataset has 3 classes, we are just going to use two of them for this example. We will also be limiting the model to only one feature, for visualization purposes.
+We're going to use two different subsets of the iris dataset. One will result in a case that is linearly separable, and other will not be. The iris dataset has 3 classes, we are just going to use two of them for this example. We will also be limiting the model to only one feature, for visualization purposes.
 
 So first lets load the dataset, and filter it down to 2 classes.
 
@@ -234,84 +234,84 @@ data.sample(10)
   </thead>
   <tbody>
     <tr>
-      <th>96</th>
-      <td>5.7</td>
-      <td>2.9</td>
-      <td>4.2</td>
-      <td>1.3</td>
+      <th>54</th>
+      <td>6.5</td>
+      <td>2.8</td>
+      <td>4.6</td>
+      <td>1.5</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>48</th>
-      <td>5.3</td>
-      <td>3.7</td>
-      <td>1.5</td>
+      <th>30</th>
+      <td>4.8</td>
+      <td>3.1</td>
+      <td>1.6</td>
       <td>0.2</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>84</th>
-      <td>5.4</td>
-      <td>3.0</td>
-      <td>4.5</td>
-      <td>1.5</td>
+      <th>97</th>
+      <td>6.2</td>
+      <td>2.9</td>
+      <td>4.3</td>
+      <td>1.3</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>22</th>
+      <td>4.6</td>
+      <td>3.6</td>
+      <td>1.0</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>5.1</td>
+      <td>3.3</td>
+      <td>1.7</td>
+      <td>0.5</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>6.1</td>
+      <td>2.9</td>
+      <td>4.7</td>
+      <td>1.4</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>31</th>
       <td>5.4</td>
-      <td>3.9</td>
-      <td>1.3</td>
+      <td>3.4</td>
+      <td>1.5</td>
       <td>0.4</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>76</th>
-      <td>6.8</td>
-      <td>2.8</td>
-      <td>4.8</td>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
       <td>1.4</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>6.0</td>
+      <td>2.2</td>
+      <td>4.0</td>
+      <td>1.0</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>20</th>
-      <td>5.4</td>
-      <td>3.4</td>
-      <td>1.7</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>4.6</td>
-      <td>3.2</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>4.3</td>
-      <td>3.0</td>
-      <td>1.1</td>
-      <td>0.1</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>5.1</td>
-      <td>3.8</td>
+      <th>27</th>
+      <td>5.2</td>
+      <td>3.5</td>
       <td>1.5</td>
-      <td>0.3</td>
+      <td>0.2</td>
       <td>0.0</td>
-    </tr>
-    <tr>
-      <th>58</th>
-      <td>6.6</td>
-      <td>2.9</td>
-      <td>4.6</td>
-      <td>1.3</td>
-      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -319,7 +319,7 @@ data.sample(10)
 
 
 
-Now, let's create the the logistic regression class. Per usual, we'll use NumPy so we can perform matrix operaitons (This results in cleaner equations and faster code). We'll define the loss function, optimization function (fit), and the predict function. Notice that the code matches the equations above nearly exactly.
+Now, let's create the logistic regression class. Per usual, we'll use NumPy so we can perform matrix operations (This results in cleaner equations and faster code). We'll define the loss function, optimization function (fit), and the predict function. Notice that the code matches the equations above nearly exactly.
 
 We will be creating two different predict functions for this class. `predict_proba(X)` will return a real number between 0 and 1, which is the probability of the observation being of class=1. `predict(X,threshold)` will return either 1 or 0. If the probability of class 1 is greater than `threshold` it'll return 1, otherwise it'll return 0.
 
@@ -373,14 +373,14 @@ plt.scatter(X,y,c="green")
 plt.plot(np.arange(1,5,0.01),lr.predict_proba(np.arange(1,5,0.01)))
 ```
 
-    /var/folders/_0/q1jpcbjj21x7krvplwn7jblc0000gn/T/ipykernel_5498/4053696788.py:7: RuntimeWarning: divide by zero encountered in log
+    /var/folders/_0/q1jpcbjj21x7krvplwn7jblc0000gn/T/ipykernel_7869/410938508.py:7: RuntimeWarning: divide by zero encountered in log
       loss = - y * np.log(y_hat) - (1 - y) * np.log(1-y_hat)
 
 
 
 
 
-    [<matplotlib.lines.Line2D at 0x12aec6b90>]
+    [<matplotlib.lines.Line2D at 0x14cac2cd0>]
 
 
 
@@ -404,7 +404,7 @@ plt.plot(np.arange(4,7,0.01),lr.predict(np.arange(4,7,0.01)))
 
 
 
-    [<matplotlib.lines.Line2D at 0x12aff3350>]
+    [<matplotlib.lines.Line2D at 0x14cb1fd50>]
 
 
 
@@ -424,8 +424,9 @@ Let's say we have a binary classification model called clf. For our test set, we
 - **True Positive (TP)**:= Count of predictions that correctly label the observation as positive
 - **True Negative (TN)**:= Count of predictions that correctly label the observation as negative
 - **False Positive (FP)**:= Count of predictions that incorrectly label the observation as positive
+- **False Negative (FN)**:= Count of predictions that incorrectly label the observation as negative
 
-Accuracy is the total the percent of correct predictions. Not good for imbalanced datasets. Ie. 10% of observations are positive, model predicts all obvservations are negative; model thus has 90% precision. 
+Accuracy is the total percent of correct predictions. Not good for imbalanced datasets. Ie. 10% of observations are positive, model predicts all observations are negative; model thus has 90% accuracy.
 - **Accuracy** =(TP+TN)/(P+N)
 
 Precision is the percent of correctly labeled true positives, of the observations that were predicted to be positive.
@@ -435,7 +436,7 @@ Recall is the percent of correctly labeled true positives of all positive observ
 - **Recall** = TP/P
 
 A harmonic mean. This is a good metric to use when you have an imbalanced dataset.
-- **F1 Score** = (2TP) / (2TP+FP+FP+FN)
+- **F1 Score** = (2TP) / (2TP+FP+FN)
 
 
 ```python
@@ -477,7 +478,7 @@ class logistic_regression:
     
     def get_metrics(self, X, y, threshold=0.5):
         metrics = {}
-        y_hat = self.predict(X)
+        y_hat = self.predict(X, threshold)
         P = np.sum(y)
         N = len(y) - P
         TP = y[y_hat==1].sum()         # count when y==1 & y_hat==1
@@ -487,7 +488,7 @@ class logistic_regression:
         metrics["Recall"] = TP / P
         metrics["Precision"] = TP / (TP+FP)
         metrics["Accuracy"] = (TP + TN) / (P+N)
-        metrics["F1-Score"] = (2*TP) / (2*TP+FP+FP+FN)
+        metrics["F1-Score"] = (2*TP) / (2*TP+FP+FN)
         return metrics
         
 ```
@@ -504,7 +505,7 @@ lr.get_metrics(X,y)
     {'Recall': 0.88,
      'Precision': 0.8979591836734694,
      'Accuracy': 0.89,
-     'F1-Score': 0.8461538461538461}
+     'F1-Score': 0.8888888888888888}
 
 
 

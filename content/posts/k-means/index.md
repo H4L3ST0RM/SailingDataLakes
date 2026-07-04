@@ -47,17 +47,17 @@ algorithms come in handy.
 
 ## What is K-Means?
 So what is K-Means cluster analysis? It's a pretty simple algorithm that works as follows:
-1. The user selects the hyper-parameter value for *k*. and the number of iterations n.
+1. The user selects the hyper-parameter value for *k*, and the number of iterations n.
 2. For each iteration n:
     1. For each observation obs:
-       1. Find distance obs is from each centroid.
-       2. Assign obs to nearest centroid.
-   2. Move each centroid k to the mean of the observations assigned to it's  respective cluster.
+        1. Find distance obs is from each centroid.
+        2. Assign obs to nearest centroid.
+    2. Move each centroid k to the mean of the observations assigned to its respective cluster.
 
 ## Variations and Hyper-Parameters
 There are really 3 things you can change in the K-Means algorithm. 
 1. The value of k, which allows you to dictate the number of clusters to be formed.
-2. The calculation used for measuring distance. Standard wood be Euclidean distance, but Manhattan
+2. The calculation used for measuring distance. Standard would be Euclidean distance, but Manhattan
 distance among others could also be used.
 3. The statistic used for moving the centroid can also be changed. Rather than K-Means, we could
 calculate K-Median, for instance. 
@@ -76,15 +76,15 @@ resulting clusters do not make sense.
 Another limitation, is how it handles new data. The number of clusters, k, is set. So, if a month
 after a deployment, a seemingly new cluster forms some where in the data space, that in the case of
 2d data, could easily be visually identified. It doesn't matter, it will still be assigned to 
-one of the original k-clusters. Other clustering algorithms hae *noise* components that can better
+one of the original k-clusters. Other clustering algorithms have *noise* components that can better
 adapt and handle unseen data distributions in my opinion.
 
-Finally, I find the the selection of *k* to be boarding more art than science. We have the *elbow
+Finally, I find the selection of *k* to be bordering on more art than science. We have the *elbow
 test* and other similar metrics to guide us in our selection, but at the end of the day the selection
 of k is at the discretion of the data scientist. Which is unsettling to me.
 
 ## Example
-For the example, we're going to read in a table wtih
+For the example, we're going to read in a table with
 three columns: gender, height, and weight. For now, we're
 going to ignore gender, and just look at height and weight.
 
@@ -142,84 +142,84 @@ data.sample(10)
   </thead>
   <tbody>
     <tr>
-      <th>12</th>
+      <th>24</th>
       <td>4.8</td>
-      <td>3.0</td>
-      <td>1.4</td>
-      <td>0.1</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.6</td>
-      <td>3.1</td>
-      <td>1.5</td>
+      <td>3.4</td>
+      <td>1.9</td>
       <td>0.2</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>82</th>
-      <td>5.8</td>
-      <td>2.7</td>
-      <td>3.9</td>
+      <th>43</th>
+      <td>5.0</td>
+      <td>3.5</td>
+      <td>1.6</td>
+      <td>0.6</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>6.1</td>
+      <td>2.8</td>
+      <td>4.7</td>
       <td>1.2</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>4.6</td>
-      <td>3.4</td>
-      <td>1.4</td>
-      <td>0.3</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>113</th>
-      <td>5.7</td>
-      <td>2.5</td>
-      <td>5.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>119</th>
-      <td>6.0</td>
-      <td>2.2</td>
-      <td>5.0</td>
-      <td>1.5</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>6.5</td>
-      <td>2.8</td>
-      <td>4.6</td>
-      <td>1.5</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>78</th>
-      <td>6.0</td>
-      <td>2.9</td>
-      <td>4.5</td>
-      <td>1.5</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>29</th>
+      <th>86</th>
+      <td>6.7</td>
+      <td>3.1</td>
       <td>4.7</td>
-      <td>3.2</td>
-      <td>1.6</td>
+      <td>1.5</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>6.1</td>
+      <td>3.0</td>
+      <td>4.9</td>
+      <td>1.8</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
       <td>0.2</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>131</th>
-      <td>7.9</td>
-      <td>3.8</td>
-      <td>6.4</td>
-      <td>2.0</td>
-      <td>2.0</td>
+      <th>87</th>
+      <td>6.3</td>
+      <td>2.3</td>
+      <td>4.4</td>
+      <td>1.3</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>6.0</td>
+      <td>3.4</td>
+      <td>4.5</td>
+      <td>1.6</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>5.2</td>
+      <td>4.1</td>
+      <td>1.5</td>
+      <td>0.1</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -348,12 +348,11 @@ plt.ylabel("petal width (cm)")
 ## Metrics
 First, let's talk about the **Silhouette Coefficient (SC)**. The takes into
 account both cohesion and separation. Cohesion is a measure of how similar
- the observations within a cluster are too each other. Separation is looking
-at how similar the observations of a cluster are with other clusters.
-Inertia
-Distance & Similarity
+ the observations within a cluster are to each other. Separation is looking
+at how similar the observations of a cluster are with other clusters. We'll also cover
+Inertia, another distance & similarity based metric.
 
-- a :=intra-cluster distances
+- a := intra-cluster distances
 - b := nearest-cluster distances
 - SC := Silhouette Coefficient
 - K := Number of clusters
@@ -369,13 +368,13 @@ Distance & Similarity
 
 To calculate $a$, we take the euclidean between observation $X_i$ and every other observation, $X_j$ assigned to the same cluster. We then average it.
 
-$$a_i = \frac{1}{N} \sum_{k=1}^K \sum_{i \in C_k} \sum_{j \in C_k}[||X_i - X_j||_2 $$
+$$a_i = \frac{1}{N^k} \sum_{j \in C_k} ||X_i - X_j||_2$$
 
 To calculate $b$, we do the same thing, but instead of the mean euclidean distance between an observation and other observations within its assigned cluster, we get the distances to observations in its closest neighboring cluster, $k2$.
 
-$$b_i = \frac{1}{N} \sum_{k=1}^K \sum_{i \in C_k} \sum_{j \in C_k}}[||X_i - X_j||_2 $$
+$$b_i = \frac{1}{N^{k2}} \sum_{j \in C_{k2}} ||X_i - X_j||_2$$
 
-$$SC = \sum_i^N \frac{b_i - a_i}{max(b_i,a_i)}$$
+$$SC = \frac{1}{N}\sum_{i=1}^N \frac{b_i - a_i}{max(b_i,a_i)}$$
 
 Now lets implement it. Below we create a function for calculating a silhouette coefficient, given a trained model and data.
 
@@ -406,7 +405,7 @@ def silhouette_coefficient(data,model):
 
     # Mean nearest-Cluster Distance
     """
-    This loop calculates the mean distance of each obersation, with all other observations in the cluster nearest to it.
+    This loop calculates the mean distance of each observation, with all other observations in the cluster nearest to it.
     """
     b = np.zeros((len(X)))
     for i in range(len(X)):
@@ -418,10 +417,10 @@ def silhouette_coefficient(data,model):
     for i in range(len(X)):
         top = b[i]-a[i]
         bot = np.max([a[i],b[i]])
-                     
-        s = np.sum(top/bot)
-    
-    return s
+
+        s[i] = top/bot
+
+    return np.mean(s)
 ```
 
 Great! now let's see what the silhouette coefficient is for our model.
@@ -434,25 +433,25 @@ silhouette_coefficient(X,algo)
 
 
 
-    0.3101181760265349
+    0.6672939008345414
 
 
 
-Our silhouette coefficient is ~0.31, which isn't great. How can we try to improve this? Well, without applying transforms to the data, we really have two options.
+Our silhouette coefficient is ~0.67, which is actually quite good! Still, we picked k=3 somewhat arbitrarily, so it's worth double-checking that choice rather than assuming we got lucky. Without applying transforms to the data, we really have two levers to explore.
 
 Option 1 is to re-train the model with a different random seed. This doesn't sound like a big change, but in practice, a different initialization of your centroids can have major impact on the model.
 
-Option 2 is to change the value k. How do you select how many clusters there shuold be? Unfortunately there is no easy answer to this, and why cluster analysis can sometimes seem more like an art than a science. The most common tool used to select k, is called the "elbow test." T
+Option 2 is to change the value k. How do you select how many clusters there should be? Unfortunately there is no easy answer to this, and why cluster analysis can sometimes seem more like an art than a science. The most common tool used to select k, is called the "elbow test."
 
 The elbow test involves iterating through multiple values of k, and taking the *interia* each time. Than plotting the inertia, and finding the joint in the graph. It's usually a good bet that the value k where the joint is located is close to the optimal value k.
 
-So what is inertia? Inertia, in this case, is the Within-Cluster Sum of Squares (WCSS). 
-$$WCSS= \frac{1}{K} \sum_{k \in C_k} \frac{||X_k - C_k||_2}{N^k}$$
+So what is inertia? Inertia in this sense really calculating is the Within-Cluster Sum of Squares (WCSS). 
+$$WCSS = \frac{1}{K} \sum_{k=1}^K \left(\frac{1}{N^k}\sum_{i \in C_k} ||X_i - C_k||_2\right)$$
 
-That is to say, taking the average distance between an onbservation in cluster k, and the centroid k for each centroid, and then taking the mean value of the 3 centroid WCSS calcuations.
+That is to say, taking the average distance between an observation in cluster k, and the centroid k for each centroid, and then taking the mean value of the 3 centroid WCSS calculations.
 
 
-Below we are going to create two functions. The first will calculate the inertia for a given trained model and a set of data. The second function will train a model multiple times on a range of k values, and return two lists, one containing the k values, and other contianing there respective average inertia.
+Below we are going to create two functions. The first will calculate the inertia for a given trained model and a set of data. The second function will train a model multiple times on a range of k values, and return two lists, one containing the k values, and other containing their respective average inertia.
 
 
 ```python
@@ -481,7 +480,7 @@ def elbow_test(data,k):
     for k in range(2,k):
         tests = []
         for j in range(1,4):
-            algo = k_means(k,iters=20,seed=10)
+            algo = k_means(k,iters=20,seed=k*10+j)
             algo.fit(data)
             tests.append(inertia(data,algo))
         inertias.append(np.mean(tests))
@@ -508,7 +507,7 @@ plt.grid(True)
     
 
 
-Looking at the above graph, it looks like the joint is at 4. Let's try re-training the model with k=4 and see how that impacts our silhouette coefficient.
+Looking at the above graph, it looks like the joint is at 4. Let's try re-training the model with k=4 and see how that impacts our silhouette coefficient, compared to the ~0.67 we got with k=3.
 
 
 ```python
@@ -520,7 +519,7 @@ silhouette_coefficient(X,algo)
 
 
 
-    0.3101181760265349
+    0.4865702121994808
 
 
 
@@ -546,7 +545,7 @@ plt.ylabel("petal width (cm)")
     
 
 
-Yikes! That is definitely not better than our last model. What happened? Well remember the elbow chart takes into account the average of mulitple different initializations. And it looks like two of the clusters in the bottom left got initialized too close together. Let's try a different intializaiton and see what happens.
+Hmm, that's actually worse than our k=3 model (0.49 vs. 0.67). What happened? Well remember the elbow chart takes into account the average of multiple different initializations. And it looks like two of the clusters in the bottom left got initialized too close together. Let's try a different initialization and see what happens.
 
 
 ```python
@@ -558,11 +557,11 @@ silhouette_coefficient(X,algo)
 
 
 
-    0.6719573190314571
+    0.612961266153987
 
 
 
-0.67 is a much better score! Below is the plot of the clusters now that they've been reinitialized.
+0.61 is a better score than our first k=4 attempt, though it still doesn't beat our original k=3 model's ~0.67. Below is the plot of the clusters now that they've been reinitialized.
 
 
 ```python
@@ -586,14 +585,14 @@ plt.ylabel("petal width (cm)")
     
 
 
-Something important of note, is that the dataset used in this example is actually labelled - and there are 3  classes! So ideally, K-means would have found 3 different clusters, one representing each class. That did not happen, likely due to several reasons, a couple being:
+Something important of note, is that the dataset used in this example is actually labelled - and there are 3 classes! So it's not a coincidence that our very first, k=3 model ended up with the best silhouette score of the three we tried. The k=4 attempts are, at best, splitting one of the 3 true classes into two, which is likely part of why neither one topped the k=3 result. A couple of other reasons the k=4 clusters don't look ideal:
 
 - We only used 2 of the 3 dimensions in this example. The 3rd dimension may have provided further separation between the two overlapping clusters.
 - K-means requires that the clusters be spherical in nature. It looks like 2 of the clusters are more elongated than spherical.
 
 
 
-## conclusion
+## Conclusion
 
 In todays post we:
 

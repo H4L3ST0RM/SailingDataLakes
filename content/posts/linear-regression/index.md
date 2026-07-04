@@ -39,7 +39,7 @@ We have our model, now what? We need to define our problem. We want to minimize 
 
 $$\vec{\hat{\beta}}=\min_{\vec{\hat{\beta}}} L(D, \vec{\beta}) =\min_{\vec{\hat{\beta}}} \sum_{i=1}^{n}{(\hat{\beta} .\vec{x_i} - y_i)^2}$$
 
-In the equation above, $L(D,\vec{\beta})$ is the notation used to indcate what our **loss function** is. $D$ being the matrix of data, and $\vec{\beta}$ being the vector of parameters on our function, to be applied to the data in order to  Below, we will expand the equation, so that we can more easily manipulate it.
+In the equation above, $L(D,\vec{\beta})$ is the notation used to indicate what our **loss function** is. $D$ being the matrix of data, and $\vec{\beta}$ being the vector of parameters applied to the data to produce our predictions. Below, we will expand the equation, so that we can more easily manipulate it.
 
 $$L(D,\vec{\beta})=||X\vec{\beta} - Y||^2$$
 $$=(X\vec{\beta}-y)^T(X\vec{\beta}-Y)$$
@@ -50,21 +50,20 @@ Now, to find the values that minimize the function, we take the gradient and set
 Get gradient w.r.t. $\vec{\beta}$
 
 $$\frac{\partial{L(D,\vec{\beta})}}{\partial{\vec{\beta}}} 
-= \frac{\partial{(Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}X^TX\vec{\beta}})}{\partial{\vec{\beta}}}$$
+= \frac{\partial{(Y^TY-Y^TX\vec{\beta}-\vec{\beta}^TX^TY+\vec{\beta}^TX^TX\vec{\beta}})}{\partial{\vec{\beta}}}$$
 
 $$= \frac{ \partial{Y^TY} }{ \partial{\beta}} - 
 \frac{ \partial{Y^TX\vec{\beta}} }{ \partial{\beta}} - 
 \frac{ \partial{\vec{\beta}^TX^TY} }{ \partial{\beta} } +
-\frac{ \partial{\vec{\beta}X^TX\vec{\beta}} }{ \partial{\beta}}
+\frac{ \partial{\vec{\beta}^TX^TX\vec{\beta}} }{ \partial{\beta}}
 $$
-$$= 0 - Y^TX - X^TY + 2\beta^TX^TX$$
-$$= -2Y^TX+2\vec{\beta}^TX^TX$$
+$$= 0 - X^TY - X^TY + 2\vec{\beta}^TX^TX$$
+$$= -2X^TY+2\vec{\beta}^TX^TX$$
 
 Set gradient to zero and solve for $\hat{\beta}$.
 
-$$-2Y^TX+2\vec{\beta}^TX^TX=0$$
-$$Y^TX=\vec{\beta}^TX^TX$$
-$$X^TY=X^TX\vec{\beta}$$
+$$-2X^TY+2\vec{\beta}^TX^TX=0$$
+$$X^TX\vec{\beta}=X^TY$$
 
 Now, with one last manipulation of the equation above, we optimize the parameters $\vec{\beta}$ using ordinary least squares (OLS)
 
@@ -73,7 +72,7 @@ $$\hat{\beta} = (\vec{X}^{T} \vec{X})^{-1} \vec{X}^{T} \vec{y}$$
 Notice the above equation is entirely solvable, in closed form. There are no parameters on the right hand side of the equation. Solving the equation, will give us the optimal values for $\hat{\beta}$, that minimize the loss function, ie. the difference between $\hat{y}$ and $y$.
 
 Also of note, if you recall solving systems of equations in school; where if you have $x$ equations containing
-$x$ variables, and you're able to solve for the each of the variables through manipulations of the equations. OLS is very much like the solutions you learned, except there has to be aproximations, since there are likely stochastic elements and unknown variables also influencing $y$.
+$x$ variables, and you're able to solve for the each of the variables through manipulations of the equations. OLS works much like those solutions, except it has to approximate, since there are likely stochastic elements and unknown variables also influencing $y$.
 
 ## Example
 
@@ -93,7 +92,6 @@ Here we are reading in the data.
 
 
 ```python
-#data = data.sample(n=1000, random_state=1)
 url = "https://gist.githubusercontent.com/nstokoe/7d4717e96c21b8ad04ec91f361b000cb/raw/bf95a2e30fceb9f2ae990eac8379fc7d844a0196/weight-height.csv"
 data = pd.read_csv(url)
 X = data["Height"].values
@@ -186,7 +184,7 @@ class linear_regression:
         return np.array([np.ones(len(X)),X]).T @ self.betas  
 ```
 
-Now we create our a instance of our linear_regression object and name it $lm$. We pass through the trianing data, $X$ and $y$, and we get a fitted model, with the $\beta$ values outputted below.
+Now we create an instance of our linear_regression object and name it $lm$. We pass through the training data, $X$ and $y$, and we get a fitted model, with the $\beta$ values outputted below.
 
 
 ```python
@@ -219,30 +217,30 @@ print(model.intercept_)
 
 So, we have a linear regression model, and we've fitted it to some data. That's great, but how do we know how well it is fitted? What metrics should we use to evaluate the model?
 
-First we have **mean squared residual (MSR)**. We figure out how far off our prediction is from the actual value, for each observation. We square the error, so all values are the same sign now (ie. positive). We then calculate the mean of all the squared errors, by summing them together and dividing the total by the number of observations. A downside of this metric is that can be difficult for the layman to interpret.
+First we have the **mean squared error (MSE)**. We figure out how far off our prediction is from the actual value, for each observation. We square the error, so all values are the same sign now (ie. positive). We then calculate the mean of all the squared errors, by summing them together and dividing the total by the number of observations. A downside of this metric is that can be difficult for the layman to interpret.
 
 But first, let's define residual $\hat{e}$ as follows:
 $$\hat{e_i} = (y_i - \hat{y_i})$$
 Now, we can define MSE as:
 $$MSE = \frac{1}{n} \sum_{i=1}^n{(\hat{e_i})^2}$$
 
-By taking the root of MSE, we get the **root mean squared residual (RMSR)**. Taking the root of the MSE gives us a more interpretable variable. The RMSE can now be interpreted as the average absolute difference between the predicted value and the actual value. The lower the value, the better.
+By taking the root of MSE, we get the **root mean squared error (RMSE)**. Taking the root of the MSE gives us a more interpretable variable. The RMSE can now be interpreted as the average absolute difference between the predicted value and the actual value. The lower the value, the better.
 
 $$RMSE = \sqrt{MSE}$$
 
-**Important Note:** We are using residual instead of error in this example, since we are calculating the metric from the same sample of data the model was trained on (training set). If instead we calculated the above two metrics against an of of sample population, such as a test set, we would call them **Mean Square Error (MSE)** and root **mean square error (RMSE).**
+**Important Note:** Strictly speaking, since we are calculating MSE/RMSE against the same data the model was trained on (the training set), these are technically *in-sample* metrics. The same formulas computed against an out-of-sample population, such as a held-out test set, would give you the model's *test* MSE/RMSE, which is generally a more honest estimate of how well the model generalizes.
 
 The **residual sum of squares (RSS)** is just the sum of squared residuals
 $$RSS = \sum_{i=1}^n{(\hat{e_i})^2}$$
 
-The **Total sum of squares** is the sum of squared differnces between an observed value $y_i$ and the mean value $\bar{y}$. Notice this metric is completely independent of the model. This metric is used in $R^2$ as a way of comparing what percentage of variance is explained by the model.
+The **Total sum of squares** is the sum of squared differences between an observed value $y_i$ and the mean value $\bar{y}$. Notice this metric is completely independent of the model. This metric is used in $R^2$ as a way of comparing what percentage of variance is explained by the model.
 
 $$TSS = \sum_{i=1}^n{(y_i - \bar{y})^2}$$
 
 The **Coefficient of determination ($R^2$)** is a ratio of what percentage of the variance in the dependent variable has been accounted for. The higher the value, the better.
 $$R^2 = 1 - \frac{RSS}{TSS}$$
 
-Next, let's implement the metrics in our linear regression class we built above.You can see the updated code below.
+Next, let's implement the metrics in our linear regression class we built above. You can see the updated code below.
 
 
 
@@ -290,7 +288,7 @@ class linear_regression:
 
 Creating an updated instance of the linear regression class and fitting the same data, we can now see the metrics.
 
-We have a RMSE of ~12, meaning that on average, the difference between the actual value $y_i$ and the predicted value $\hat{y_i}$ is plus or minus 12. Remember we're predicting weight (pounds), so plus or minus 10 lbs, intuitively, is probably not very good.
+We have a RMSE of ~12, meaning that on average, the difference between the actual value $y_i$ and the predicted value $\hat{y_i}$ is plus or minus 12. Remember we're predicting weight (pounds), so plus or minus 12 lbs, intuitively, is probably not very good.
 
 This is further highlighted in the $R^2$ value of 0.86. This implies that our model accounts for 86% of the variance in the dependent variable, which is not too shabby.
 
@@ -311,7 +309,7 @@ lm.metrics
 
 
 
-Below, we visualize the results. We have a scatter plot of all the data points. The blue line is the predicted value of weight, given height. The red lines are plus 10 and minus 10 the predicted value. Illustrating that as the RMSE suggests, the predicted value is usually plus or minus the RMSE of the actual value.
+Below, we visualize the results. We have a scatter plot of all the data points. The black line is the predicted value of weight, given height. As the RMSE suggests, the actual observed values are scattered roughly plus or minus 12 lbs around this line.
 
 
 ```python
@@ -335,7 +333,7 @@ plt.title("Predicting Weight from Height")
     
 
 
-## conclusion
+## Conclusion
 
 We discussed what linear regression was intuitively, mathematically, and demonstrated the concepts with coded examples. We then went on to discuss some key metrics surrounding linear regression in detail, again with coded examples.
 
