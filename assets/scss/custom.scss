@@ -1,0 +1,6 @@
+// Wide KaTeX display equations (e.g. matrices) can exceed the content
+// column width. Let them scroll horizontally instead of overflowing the page.
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
