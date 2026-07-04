@@ -1,10 +1,10 @@
 +++
 authors = ["John C Hale"]
 title = "Gradient Descent"
-date = "2026-07-03"
+date = "2026-07-04"
 description = "An overview of how gradient descent works, and why it matters when there's no closed-form solution"
 math = true
-draft = true
+draft = false
 tags = [
     "ml",
     "data science",
