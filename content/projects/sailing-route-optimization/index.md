@@ -1,6 +1,6 @@
 +++
 authors = ["John C Hale"]
-title = "Sailboat Route Optimization with Q-Learning"
+title = "Sailing Route Optimization with Q-Learning"
 date = "2024-04-13"
 description = "A fun project using Q-Learning to train an agent to sail to a waypoint."
 math = false
@@ -17,26 +17,25 @@ tags = [
 
 ## Introduction
 
-Sailing can be hard and not always intuitive, especially when racing. Typically a sailboat race has a starting line/finishing line and two marks (waypoints). A windward mark, and a leeward mark. Before move on, let's go over some terminology.
+Sailing can be hard and not always intuitive, especially when racing. Typically a sailboat race has a starting line/finishing line and two marks (waypoints). A windward mark, and a leeward mark. Before we move on, let's go over some terminology.
 
 - **Windward-Leeward Course**:
     - A typical sailboat race course configuration.
-    - You have a start-finsih line in the center of the course, that is perpendicular to the direction of the wind.
-    - A windward mark and leeward mark you have to sail aorund.
+    - You have a start-finish line in the center of the course, that is perpendicular to the direction of the wind.
+    - A windward mark and leeward mark you have to sail around.
 - **Windward Mark**: The mark that is upwind of the start-finish line.
 - **Leeward Mark**: The mark that is downwind of the start-finish line.
 - **Point of Sail**: The angle off the wind you are sailing. The diagram below illustrates the different points of sail.
 - **Tack Maneuver**: A sailing maneuver where you swing your bow across wind to change direction (*tack*). 
 - **Velocity Made Good (VMG)**: The component of your velocity headed towards the mark.
-    - Example: The mark is due North of you current location, but you are travelling North-Northeast at 5 knots. Your VMG will less than 5 knots, since you are moving *away* from the mark along the x-axis, but it will be greater than 0 since you are moving *towards* the mark along the y-axis.
+    - Example: The mark is due North of your current location, but you are travelling North-Northeast at 5 knots. Your VMG will be less than 5 knots, since you are moving *away* from the mark along the x-axis, but it will be greater than 0 since you are moving *towards* the mark along the y-axis.
 
-Usually, the race starts going to the upwind mark. This is tricky, because a sailboat can on travel directly into the wind. At best, a boat can usually sail 30 degrees off of the wind. This point of sail is called closed hauled. This has several effects:
+Usually, the race starts going to the upwind mark. This is tricky, because a sailboat cannot travel directly into the wind. At best, a boat can usually sail 30 degrees off of the wind. This point of sail is called close-hauled. This has several effects:
 1. Since you can't sail directly to the mark, you typically take a zig-zag type route upwind to it.
-2. Since you are closed hauled, any subtle (or major) shift in the wind will have impact on your velocity made good.
+2. Since you are close-hauled, any subtle (or major) shift in the wind will have an impact on your velocity made good.
 3. When you tack, you temporarily lose velocity, since as you swing your bow across the wind, your sails will not be powered.
 
 ![Points of Sail](points_of_sail.jpg)
-
 
 ## Purpose
 
@@ -67,9 +66,9 @@ from skspatial.objects import Line, Point
 
 ### Boat Object
 
-The boat object will have 6 attributes 4 methods.
+The boat object will have 6 attributes and 4 methods.
 
-Three of the attributes are saving initial state boat:
+Three of the attributes save the boat's initial state:
 - init_direction
 - init_velocity
 - init_position
@@ -84,7 +83,7 @@ The functions are:
 
 - reset(): Resets the state of the boat to its initial state.
 - update_position(): updates the position of the boat, based on its velocity and direction
-- update_direction(action): Updates the direction of the boat, based on an inputted action. Acitons include:
+- update_direction(action): Updates the direction of the boat, based on an inputted action. Actions include:
     - No change in direction
     - Slight change to the port (left)
     - Slight change in direction to the starboard (right)
@@ -137,14 +136,10 @@ class Boat:
         return
 
     def update_velocity(self, wind_direction, wind_velocity):
-        diff = np.abs(self.direction - wind_direction)
-
-        if diff < 38 and diff != 0:
-            self.velocity = (1 - np.exp(-(np.pi / 12) ** 2 / (np.pi / 12)))
-        else:
-            boat_rads = math.radians(self.direction)
-            wind_rads = math.radians(wind_direction)
-            self.velocity = wind_velocity * (1 - np.exp(-(boat_rads - wind_rads) ** 2 / (np.pi / 12)))
+        diff = np.abs(self.direction - wind_direction) % 360
+        diff = min(diff, 360 - diff)
+        diff_rads = math.radians(diff)
+        self.velocity = wind_velocity * (1 - np.exp(-(diff_rads ** 2) / (np.pi / 12)))
         return
 ```
 
@@ -206,8 +201,8 @@ The wind object has 4 attributes and 3 methods. The attributes are:
 
 The methods are:
 
-- update_velocity(): Velocity of wind is randomy updated based on a normal distribution. The velocity is capped between 1 and 10.
-- update_direction(): Direction is ramdomly updated based ona normal distribution. The wind has a 20% chance of changing.
+- update_velocity(): Velocity of wind is randomly updated based on a normal distribution. The velocity is capped between 1 and 10.
+- update_direction(): Direction is randomly updated based on a normal distribution. The wind has a 20% chance of changing.
 
 
 ```python
@@ -263,12 +258,12 @@ The primary methods for this class are the step() and reset() methods. The step 
 
 The other methods are as follows:
 
-- get_relative_direction(A,B): Gets the relative directon between two points, A and B.
+- get_relative_direction(A,B): Gets the relative direction between two points, A and B.
 - get_true_bearing_wp(): Gets the true bearing between boat and waypoint.
 - _get_state(): Returns dictionary of data needed for agent to make a decision on next action.
     - relative_wind_direction
     - relative_bearing_wp
-- _get_info(): Returns dictionary of data that can be used to to evaluate and analyze agent performance.
+- _get_info(): Returns dictionary of data that can be used to evaluate and analyze agent performance.
 
 
 ```python
@@ -298,23 +293,7 @@ class SailingWorld(gym.Env):
         B = self.wp.position
         Adj = B[0] - A[0]
         Opp = B[1] - A[1]
-        abs_Adj = np.abs(Adj)
-        abs_Opp = np.abs(Opp)
-        Hyp = self.dist_to_wp
-        sin_radians = np.arcsin(abs_Opp / Hyp)
-        sin_degrees = int(math.degrees(sin_radians))
-        cos_radians = np.arccos(abs_Adj / Hyp)
-        if Adj == 0.0 and Opp < 0.0:
-            self.true_bearing_wp = 270
-        elif Adj > 0.0 and Opp >= 0.0:  # First Quadrant
-            self.true_bearing_wp = sin_degrees
-        elif Adj < 0.0 and Opp >= 0.0:  # Second Quadrant
-            self.true_bearing_wp = 180 - sin_degrees
-        elif Adj <= 0.0 and Opp < 0.0:  # Third Quadrant
-            self.true_bearing_wp = sin_degrees + 180
-        else:  # Fourth Quadrant
-            self.true_bearing_wp = 360 - sin_degrees
-        self.true_bearing_wp = int(self.true_bearing_wp % 360)
+        self.true_bearing_wp = int(math.degrees(math.atan2(Opp, Adj)) % 360)
         return
 
 
@@ -405,8 +384,8 @@ This is the object containing the agent data in Q-Learning. This data includes a
 - lr: Learning rate. Hyperparameter for how big of step taken when learning.
 - discount_factor: Weights reward to prevent an infinite reward on infinite timestep problems.
 - epsilon: Hyperparameter for determining probability that agent explores (ie. tries a random action), vs selects learned best action from experience.
-- epsilon_decay: Typically, epsilon starts high (high rate of exploring), and decays over time, such that the agent begins relying more on and more on what it has learned. This hyperparameter determines how quickly it moves to relying on what it is has learned.
-- final_epsilon: Hyperparameter that deermines the lowest epsilon we will have.
+- epsilon_decay: Typically, epsilon starts high (high rate of exploring), and decays over time, such that the agent begins relying more and more on what it has learned. This hyperparameter determines how quickly it moves to relying on what it has learned.
+- final_epsilon: Hyperparameter that determines the lowest epsilon we will have.
 - training_error: Keeps track of training error.
 
 There are also 6 methods in this class.
@@ -457,7 +436,7 @@ class QLearningAgent:
         pickle.dump(dict(temp), open(filepath, 'wb'))
         return
 
-    def load_q_table(self, filepath):
+    def load_q_tables(self, filepath):
         temp = pickle.load(open(filepath, 'rb'))
         self.q_values = defaultdict(lambda: np.zeros(self.action_space.n))
         for key in temp.keys():
@@ -613,7 +592,7 @@ def Q_Learning(agent,
 
 ## Training
 
-Here we declare are hyperparameters, and instantiate our environment and agent.
+Here we declare our hyperparameters, and instantiate our environment and agent.
 
 
 
@@ -624,7 +603,7 @@ start_epsilon = 1.0
 n_episodes=1_500
 epsilon_decay = start_epsilon / (n_episodes / 2)  # reduce the exploration over time
 final_epsilon = 0.001
-discount_factor= 1/400
+discount_factor = 0.95
 
 env = SailingWorld(wp=WayPoint(radius=1_000))
 env = gym.wrappers.RecordEpisodeStatistics(env, deque_size=n_episodes)
@@ -653,7 +632,7 @@ pX, pY, pWP_POS,_  = Q_Learning(agent,env,training=False,n_episodes=n,n_steps=40
 
 ```
 
-    100%|█████████████████████████████████████████| 100/100 [00:02<00:00, 40.25it/s]
+    100%|██████████| 100/100 [00:02<00:00, 35.47it/s]
 
 
 Now we are training the agent.
@@ -671,13 +650,13 @@ X, Y, WP_POS, REWARDS= agent.run(
    save_position=True)
 ```
 
-    100%|███████████████████████████████████████| 1500/1500 [00:40<00:00, 37.14it/s]
+    100%|██████████| 1500/1500 [00:45<00:00, 32.88it/s]
 
 
 
 Below we set a static waypoint due North 1,000 units from the boat. The agent has 400 time steps to get the boat to the waypoint, and 100 chances to do so. 
 
-You can see a plots of how the agent does prior to training as well as how it does after. Prior to training, it's movements are random. After training you can see much more of a pattern in behavior. Notice to, the zig-zag maneuvering going upwind!
+You can see plots of how the agent does prior to training as well as how it does after. Prior to training, its movements are random. After training you can see much more of a pattern in behavior. Notice too, the zig-zag maneuvering going upwind!
 
 
 ```python
@@ -688,7 +667,7 @@ aX, aY, aWP_POS,_  = Q_Learning(agent,env,training=False,n_episodes=n,n_steps=40
                                   save_position=True)
 ```
 
-    100%|█████████████████████████████████████████| 100/100 [00:02<00:00, 39.54it/s]
+    100%|██████████| 100/100 [00:02<00:00, 38.33it/s]
 
 
 
@@ -702,17 +681,17 @@ def _plots(axis,x,y,wppos,title):
     axis.set_title(title)
     #axis[0, 0].grid(True)
 
-_plots(axs[1],aX, aY, aWP_POS, "Prior to Training")
-_plots(axs[0],pX, pY, pWP_POS, "After Training")
+_plots(axs[0],pX, pY, pWP_POS, "Prior to Training")
+_plots(axs[1],aX, aY, aWP_POS, "After Training")
 ```
 
 
     
-![png](Sailing_Route_Optimization_29_0.png)
+![png](./Sailing_Route_Optimization_29_0.png)
     
 
 
-Below you can see the agents cummulative reward per episode increase over time.
+Below you can see the agent's cumulative reward per episode increase over time.
 
 
 ```python
@@ -731,7 +710,7 @@ plt.show()
 
 
     
-![png](Sailing_Route_Optimization_31_0.png)
+![png](./Sailing_Route_Optimization_31_0.png)
     
 
 
@@ -757,11 +736,11 @@ for ax in fig.get_axes():
 
 
     
-![png](Sailing_Route_Optimization_33_0.png)
+![png](./Sailing_Route_Optimization_33_0.png)
     
 
 
-Finally, we'll peak at how the trained agent performs on at different points of sail.
+Finally, we'll peek at how the trained agent performs at different points of sail.
 
 
 ```python
@@ -783,37 +762,37 @@ _plots(axs[0,3],np.array([-1_000.0,0.0]))
 _plots(axs[1,0],np.array([0.0,-1_000.0]))
 _plots(axs[1,1],np.array([-500.0,-500.0]))
 _plots(axs[1,2],np.array([-500.0,500.0]))
-_plots(axs[1,3],np.array([-1_000.0,0.0]))
+_plots(axs[1,3],np.array([1_000.0,0.0]))
 for ax in fig.get_axes():
     ax.label_outer()
 ```
 
-    100%|█████████████████████████████████████████████| 3/3 [00:00<00:00, 32.45it/s]
-    100%|█████████████████████████████████████████████| 3/3 [00:00<00:00, 50.17it/s]
-    100%|█████████████████████████████████████████████| 3/3 [00:00<00:00, 36.84it/s]
-    100%|█████████████████████████████████████████████| 3/3 [00:00<00:00, 43.29it/s]
-    100%|█████████████████████████████████████████████| 3/3 [00:00<00:00, 36.21it/s]
-    100%|█████████████████████████████████████████████| 3/3 [00:00<00:00, 62.13it/s]
-    100%|█████████████████████████████████████████████| 3/3 [00:00<00:00, 36.05it/s]
-    100%|█████████████████████████████████████████████| 3/3 [00:00<00:00, 39.81it/s]
+    100%|██████████| 3/3 [00:00<00:00, 40.38it/s]
+    100%|██████████| 3/3 [00:00<00:00, 52.44it/s]
+    100%|██████████| 3/3 [00:00<00:00, 47.75it/s]
+    100%|██████████| 3/3 [00:00<00:00, 36.55it/s]
+    100%|██████████| 3/3 [00:00<00:00, 42.19it/s]
+    100%|██████████| 3/3 [00:00<00:00, 49.12it/s]
+    100%|██████████| 3/3 [00:00<00:00, 55.92it/s]
+    100%|██████████| 3/3 [00:00<00:00, 51.06it/s]
 
 
 
     
-![png](Sailing_Route_Optimization_35_1.png)
+![png](./Sailing_Route_Optimization_35_1.png)
     
 
 
 ## Conclusion
 
-Overall, the agents performance increases signicantly and measurably after training. This illustrated in the many visualizations above.
+Overall, the agent's performance increases significantly and measurably after training. This is illustrated in the many visualizations above.
 
 I believe there are likely different approaches that could further enhance performance. Routes are not necessarily incorrect, but visually, they don't appear to be optimal.
 
 Some things to try:
 
 - Different reward functions. Currently we're maximizing each distance gained towards the waypoint each time step.
-- Different actions space. Currently there are 5 actions: no change in direction | small turn left | big turn left | small turn right | big turn right
+- Different action space. Currently there are 5 actions: no change in direction | small turn left | big turn left | small turn right | big turn right
 - Different learning algorithm.
 - Different state variables shared. Right now, the agent only has knowledge of the wind direction relative to the boat, and the direction of the WP relative to the boat.
 
