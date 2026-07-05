@@ -1,6 +1,6 @@
 +++
 authors = ["John C Hale"]
-title = "Reverse-Engineering a Home Run: An Inverse Ballistics Calculator"
+title = "Inverse Baseball Ballistics Calculations"
 date = "2026-07-04"
 description = "Estimating swing speed, exit velocity, and launch angle for a real home run using nothing but a stopwatch, a tape measure, and some physics."
 math = true
@@ -13,7 +13,7 @@ tags = [
     "simulation",
 ]
 +++
-# Reverse-Engineering a Home Run: An Inverse Ballistics Calculator
+# Inverse Baseball Ballistics Calculations
 
 ## Introduction
 
