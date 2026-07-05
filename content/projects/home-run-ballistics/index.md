@@ -498,4 +498,10 @@ It's also worth being honest about where this model would break down or mislead:
 - **Idealized taper.** The bat is modeled as a smooth cone with a fixed handle-to-barrel taper ratio, not the actual measured profile of a TX73, and "balance factor" is a rough stand-in for a real moment-of-inertia measurement.
 - **Crosswind ignored.** It affects where the ball lands sideways, not how far it carries or how long it hangs, so leaving it out doesn't bias the distance/time solve - but it does mean this model has nothing to say about how far off the labeled hit direction the ball actually drifted.
 
-None of that makes this a replacement for a TrackMan. It does turn "I think it went about 390-400 feet and hung around four and a quarter seconds" into a genuinely informative estimate - which is exactly the kind of thing worth having for a beer-league home run nobody was tracking with radar.
+None of that makes this a replacement for a TrackMan. It does turn "I think it went about 390-400 feet and hung around four and a quarter seconds" into a genuinely informative estimate, and for this particular swing that estimate comes out to:
+
+- **Exit velocity:** 96.0-98.5 mph
+- **Launch angle:** 22.7-23.6°
+- **Swing speed:** 69.1-71.2 mph
+
+A real, hard-hit line-drive home run - exactly the kind of thing worth having for a beer-league home run nobody was tracking with radar.
