@@ -40,7 +40,7 @@ from scipy.optimize import minimize
 
 ## Math Behind Logistic Regression
 
-So the idea is we want to treat a classification problem as a regression problem. Ie. we want to draw a line through the points. To do this, a straight line isn't going to cut it. So we need to put our linear model into a nonlinear function, known as a link function. We want this function to be "S" shaped, so it can go through the "1" class of points and the "0" class of points. What would be even better, is if it the regression value has *meaning*. What if, a $\hat{y}$ value of 0.8 means that the observation is 80% likily to be class 1. Or a value 0.2 meant it was 20% likily? That'd be useful, and make it *extremely* interpretable.
+So the idea is we want to treat a classification problem as a regression problem. Ie. we want to draw a line through the points. To do this, a straight line isn't going to cut it. So we need to put our linear model into a nonlinear function, known as a link function. We want this function to be "S" shaped, so it can go through the "1" class of points and the "0" class of points. What would be even better, is if it the regression value has *meaning*. What if, a $\hat{y}$ value of 0.8 means that the observation is 80% likely to be class 1. Or a value 0.2 meant it was 20% likely? That'd be useful, and make it *extremely* interpretable.
 
 Enter Statistics.
 
@@ -372,12 +372,6 @@ lr = logistic_regression(X,y)
 plt.scatter(X,y,c="green")
 plt.plot(np.arange(1,5,0.01),lr.predict_proba(np.arange(1,5,0.01)))
 ```
-
-    /var/folders/_0/q1jpcbjj21x7krvplwn7jblc0000gn/T/ipykernel_7869/410938508.py:7: RuntimeWarning: divide by zero encountered in log
-      loss = - y * np.log(y_hat) - (1 - y) * np.log(1-y_hat)
-
-
-
 
 
     [<matplotlib.lines.Line2D at 0x14cac2cd0>]

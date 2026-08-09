@@ -89,7 +89,7 @@ The functions are:
     - Slight change in direction to the starboard (right)
     - Large change in direction to port
     - Large change in direction to starboard
-- update_velocity(wind_direction, wind_velocity): Updates velocity of the boat based on the wind direction and wind velocity, relative to the direction and velocity of the boat. The function used to determine boat velocity simulates a sailboat's polar diagram, and was borrowed from [Paweł A. Pierzchlewicz](https://perceptron.blog/about) blog post [ai-learns-to-sail-upwind](https://perceptron.blog/ai-learns-to-sail-upwind/)
+- update_velocity(wind_direction, wind_velocity): Updates velocity of the boat based on the wind direction and wind velocity, relative to the direction and velocity of the boat. The function used to determine boat velocity simulates a sailboat's polar diagram, and was borrowed from [Paweł A. Pierzchlewicz](https://github.com/PPierzc)'s [ai-learns-to-sail](https://github.com/PPierzc/ai-learns-to-sail) project
 
 
 ```python
