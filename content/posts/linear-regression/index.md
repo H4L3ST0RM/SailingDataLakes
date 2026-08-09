@@ -2,7 +2,7 @@
 authors = ["John C Hale"]
 title = "Linear Regression"
 date = "2024-03-12"
-description = "An overview of how linear regression works"
+description = "The math behind ordinary least squares linear regression, a from-scratch implementation, and the metrics used to evaluate it."
 math = true
 tags = [
     "ml",
@@ -329,7 +329,7 @@ plt.title("Predicting Weight from Height")
 
 
     
-![png](./linear_regression_26_1.png)
+![Scatter plot of weight versus height with the fitted linear regression line overlaid, showing observed values scattered roughly ±12 lbs around the line](./linear_regression_26_1.png)
     
 
 

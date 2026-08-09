@@ -14,10 +14,11 @@ noClasses = false
 [params]
 author = "John C Hale"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
-description = "John C Hale's personal website"
-keywords = "blog,developer,personal"
-info = ["Data Scientist"]
+description = "Machine learning, applied math, and fraud prevention — written by a data scientist working in fintech risk and fraud."
+keywords = "machine learning,data science,fraud prevention,fintech,artificial intelligence,algorithms,risk"
+info = ["Data Scientist — Fraud, Risk & ML"]
 avatarURL = "images/avatar.jpg"
+images = ["images/avatar.jpg"]
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
 since = 2024
@@ -161,7 +162,7 @@ url = "https://www.linkedin.com/in/john-c-hale/"
 name = "RSS"
 icon = "fa-solid fa-rss fa-2x"
 weight = 6
-url = "https://www.sailingdatalakes.com/index.xml"
+url = "https://sailingdatalakes.com/index.xml"
 rel = "alternate"
 type = "application/rss+xml"
 

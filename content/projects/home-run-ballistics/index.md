@@ -166,7 +166,7 @@ plt.show()
 
 
     
-![png](./Home_Run_Ballistics_7_0.png)
+![Bird's-eye diagram of field geometry showing hit direction toward left-center versus wind direction from the right field pole to the left field pole](./Home_Run_Ballistics_7_0.png)
     
 
 
@@ -306,7 +306,7 @@ plt.show()
 
 
     
-![png](./Home_Run_Ballistics_14_0.png)
+![Reconstructed flight path trajectories for the 390 ft and 400 ft distance estimates, with dots marking each second since contact and the fence marked at 370 ft](./Home_Run_Ballistics_14_0.png)
     
 
 
@@ -381,7 +381,7 @@ plt.show()
 
 
     
-![png](./Home_Run_Ballistics_17_0.png)
+![Three-panel sensitivity plot of recovered exit velocity, launch angle, and swing speed across a 1500-3000 rpm backspin sweep, showing the estimate barely moves within the realistic range](./Home_Run_Ballistics_17_0.png)
     
 
 
@@ -478,7 +478,7 @@ plt.show()
 
 
     
-![png](./Home_Run_Ballistics_20_0.png)
+![Trajectory comparison of three lift modeling passes (no spin, an over-eager Cl≈S approximation, and the benchmarked Sawicki-Hubbard-Stronge model) for the same observed 390 ft flight, with dots marking each second since contact](./Home_Run_Ballistics_20_0.png)
     
 
 

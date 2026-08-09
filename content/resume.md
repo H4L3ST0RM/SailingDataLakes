@@ -10,7 +10,7 @@ John C. Hale
 ============
 
 -------------------     ----------------------------
-Apollo Beach, FL | john.c.hale@proton.me | 813-791-8287
+Apollo Beach, FL | john.c.hale@proton.me | [LinkedIn](https://www.linkedin.com/in/john-c-hale/)
 -------------------     ----------------------------
 
 Education
@@ -38,7 +38,7 @@ Experience
 **Data Scientist at Charles Schwab** | 2019 Sep -2022 Feb
 
 * Hosted a monthly risk show and tell.
-* Led a task force for improving metrics and monitoring across fraud prevention organizaiton.
+* Led a task force for improving metrics and monitoring across the fraud prevention organization.
 * Utilized SciPy optimize for fraud strategy threshold optimization.
 * Developed a login segmentation for risk scoring using K-Means. Prototyped a Flask API for deploying it.
 * Created an ensemble model consisting of logistic regression, XGBoost, and an MLP for detecting client impersonation in the call center.
@@ -46,15 +46,18 @@ Experience
 
 **DevOps Engineer at Charles Schwab** | 2017 Jul -2019 Sep
 
-* Implemented server restart and service restart automations for 11 different applications. 
-* Built two access provisioning autonmations, and a generic automation for syncing distribution lists with databases.
+* Implemented server restart and service restart automations for 11 different applications.
+* Built two access provisioning automations, and a generic automation for syncing distribution lists with databases.
 * Designed an extensive release process for a large PEGA application to get to nightly builds, using Bamboo.
 
 
 Technical Experience
 --------------------
 
-Sailboat Tack Optimizer 
-:   Implemented server restart and service restart automations for 11 different applications. Built two access provisioning autonamins, and a generic automation for syncing distribution lists with databases.
-Designed an extensive release process for a large PEGA application to get to nightly builds, using Bamboo.
+Sailboat Tack Optimizer
+:   Built a Q-learning agent that learns to sail a simulated boat to a
+    waypoint, optimizing tack decisions against wind direction and
+    velocity made good. Modeled the sailing environment (wind, points of
+    sail, tack maneuvers) and reward shaping from scratch in Python.
+    See the [full write-up](https://sailingdatalakes.com/projects/sailing-route-optimization/).
 

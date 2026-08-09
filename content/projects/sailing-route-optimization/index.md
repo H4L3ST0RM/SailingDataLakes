@@ -687,7 +687,7 @@ _plots(axs[1],aX, aY, aWP_POS, "After Training")
 
 
     
-![png](./Sailing_Route_Optimization_29_0.png)
+![Side-by-side plots of 100 boat routes to a fixed waypoint before and after Q-learning training, showing random movement before training and deliberate zig-zag tacking upwind after](./Sailing_Route_Optimization_29_0.png)
     
 
 
@@ -710,7 +710,7 @@ plt.show()
 
 
     
-![png](./Sailing_Route_Optimization_31_0.png)
+![Line plot of the Q-learning agent's cumulative reward per episode over training, with a 10-episode moving average, trending upward](./Sailing_Route_Optimization_31_0.png)
     
 
 
@@ -736,7 +736,7 @@ for ax in fig.get_axes():
 
 
     
-![png](./Sailing_Route_Optimization_33_0.png)
+![Four-panel grid of boat routes taken across successive training episode ranges, showing movement becoming more deliberate and pattern-following as training progresses](./Sailing_Route_Optimization_33_0.png)
     
 
 
@@ -779,7 +779,7 @@ for ax in fig.get_axes():
 
 
     
-![png](./Sailing_Route_Optimization_35_1.png)
+![Eight-panel grid of the trained agent's routes to waypoints at different points of sail around the boat, showing consistent tacking behavior at each angle](./Sailing_Route_Optimization_35_1.png)
     
 
 
