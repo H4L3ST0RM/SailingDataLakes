@@ -1,4 +1,4 @@
-baseURL = "http://www.sailingdatalakes.com"
+baseURL = "https://sailingdatalakes.com"
 title = "SailingDataLakes"
 theme = "hugo-coder"
 languageCode = "en"
