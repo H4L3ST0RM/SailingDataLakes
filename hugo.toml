@@ -14,9 +14,9 @@ noClasses = false
 [params]
 author = "John C Hale"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
-description = "Machine learning, applied math, and fraud prevention — written by a data scientist working in fintech risk and fraud."
+description = "Machine learning, applied math, and fraud prevention, written by someone who fights fraud for a living and nerds out on the math for fun."
 keywords = "machine learning,data science,fraud prevention,fintech,artificial intelligence,algorithms,risk"
-info = ["Data Scientist — Fraud, Risk & ML"]
+info = ["Fraud fighter & ML nerd"]
 avatarURL = "images/avatar.jpg"
 images = ["images/avatar.jpg"]
 #gravatar = "john.doe@example.com"
