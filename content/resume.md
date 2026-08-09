@@ -13,7 +13,7 @@ John C. Hale
 **Data-Driven Fraud Prevention**
 
 -------------------     ----------------------------
-Boerne, TX | john.c.hale@proton.me | [LinkedIn](https://www.linkedin.com/in/john-c-hale/)
+john.c.hale@proton.me | [LinkedIn](https://www.linkedin.com/in/john-c-hale/)
 -------------------     ----------------------------
 
 Technical Proficiencies
