@@ -40,7 +40,7 @@ from scipy.optimize import minimize
 
 ## Math Behind Logistic Regression
 
-So the idea is we want to treat a classification problem as a regression problem. Ie. we want to draw a line through the points. To do this, a straight line isn't going to cut it. So we need to put our linear model into a nonlinear function, known as a link function. We want this function to be "S" shaped, so it can go through the "1" class of points and the "0" class of points. What would be even better, is if it the regression value has *meaning*. What if, a $\hat{y}$ value of 0.8 means that the observation is 80% likily to be class 1. Or a value 0.2 meant it was 20% likily? That'd be useful, and make it *extremely* interpretable.
+So the idea is we want to treat a classification problem as a regression problem. Ie. we want to draw a line through the points. To do this, a straight line isn't going to cut it. So we need to put our linear model into a nonlinear function, known as a link function. We want this function to be "S" shaped, so it can go through the "1" class of points and the "0" class of points. What would be even better, is if it the regression value has *meaning*. What if, a $\hat{y}$ value of 0.8 means that the observation is 80% likely to be class 1. Or a value 0.2 meant it was 20% likely? That'd be useful, and make it *extremely* interpretable.
 
 Enter Statistics.
 
@@ -63,7 +63,7 @@ plt.figure(figsize=(5,5))
 
 
     
-![png](./logistic_regression_5_1.png)
+![Kernel density estimate plot of a standard normal distribution's probability density function](./logistic_regression_5_1.png)
     
 
 
@@ -92,7 +92,7 @@ sns.ecdfplot(df,x="x")
 
 
     
-![png](./logistic_regression_7_1.png)
+![Empirical cumulative distribution function (CDF) plot of a standard normal sample, showing proportion less than or equal to x](./logistic_regression_7_1.png)
     
 
 
@@ -111,7 +111,7 @@ print("In this case, the probability of an observation being less than 2, is ", 
 
 
     
-![png](./logistic_regression_9_1.png)
+![Normal CDF plot with a red line marking x=2, illustrating a ~97.7% probability of an observation being less than 2](./logistic_regression_9_1.png)
     
 
 
@@ -182,7 +182,7 @@ plt.plot(x,y,alpha=1)
 
 
     
-![png](./logistic_regression_16_1.png)
+![Line plot of the logistic (logit) function's characteristic S-curve over x from -5 to 5](./logistic_regression_16_1.png)
     
 
 
@@ -373,12 +373,6 @@ plt.scatter(X,y,c="green")
 plt.plot(np.arange(1,5,0.01),lr.predict_proba(np.arange(1,5,0.01)))
 ```
 
-    /var/folders/_0/q1jpcbjj21x7krvplwn7jblc0000gn/T/ipykernel_7869/410938508.py:7: RuntimeWarning: divide by zero encountered in log
-      loss = - y * np.log(y_hat) - (1 - y) * np.log(1-y_hat)
-
-
-
-
 
     [<matplotlib.lines.Line2D at 0x14cac2cd0>]
 
@@ -386,7 +380,7 @@ plt.plot(np.arange(1,5,0.01),lr.predict_proba(np.arange(1,5,0.01)))
 
 
     
-![png](./logistic_regression_23_2.png)
+![Scatter plot of iris petal length with class labels and the fitted logistic regression curve, showing a linearly separable case with 100% accuracy](./logistic_regression_23_2.png)
     
 
 
@@ -410,7 +404,7 @@ plt.plot(np.arange(4,7,0.01),lr.predict(np.arange(4,7,0.01)))
 
 
     
-![png](./logistic_regression_25_1.png)
+![Scatter plot of iris sepal length with class labels and the fitted logistic regression curve, showing a less clearly separable case with some misclassifications](./logistic_regression_25_1.png)
     
 
 

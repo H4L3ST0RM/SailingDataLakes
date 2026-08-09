@@ -163,7 +163,7 @@ plt.legend()
 
 
     
-![png](./root_finding_10_1.png)
+![Log-scale plot of absolute error per iteration for Newton's, Halley's, and the secant method converging to √2, showing Halley's fastest convergence](./root_finding_10_1.png)
     
 
 
@@ -276,7 +276,7 @@ plt.tight_layout()
 
 
     
-![png](./root_finding_18_0.png)
+![Three side-by-side fractal basin-of-attraction plots on the complex plane for z³-1, one each for Newton's, Halley's, and the secant method, colored by which root each starting point converges to](./root_finding_18_0.png)
     
 
 

@@ -89,7 +89,7 @@ The functions are:
     - Slight change in direction to the starboard (right)
     - Large change in direction to port
     - Large change in direction to starboard
-- update_velocity(wind_direction, wind_velocity): Updates velocity of the boat based on the wind direction and wind velocity, relative to the direction and velocity of the boat. The function used to determine boat velocity simulates a sailboat's polar diagram, and was borrowed from [Paweł A. Pierzchlewicz](https://perceptron.blog/about) blog post [ai-learns-to-sail-upwind](https://perceptron.blog/ai-learns-to-sail-upwind/)
+- update_velocity(wind_direction, wind_velocity): Updates velocity of the boat based on the wind direction and wind velocity, relative to the direction and velocity of the boat. The function used to determine boat velocity simulates a sailboat's polar diagram, and was borrowed from [Paweł A. Pierzchlewicz](https://github.com/PPierzc)'s [ai-learns-to-sail](https://github.com/PPierzc/ai-learns-to-sail) project
 
 
 ```python
@@ -687,7 +687,7 @@ _plots(axs[1],aX, aY, aWP_POS, "After Training")
 
 
     
-![png](./Sailing_Route_Optimization_29_0.png)
+![Side-by-side plots of 100 boat routes to a fixed waypoint before and after Q-learning training, showing random movement before training and deliberate zig-zag tacking upwind after](./Sailing_Route_Optimization_29_0.png)
     
 
 
@@ -710,7 +710,7 @@ plt.show()
 
 
     
-![png](./Sailing_Route_Optimization_31_0.png)
+![Line plot of the Q-learning agent's cumulative reward per episode over training, with a 10-episode moving average, trending upward](./Sailing_Route_Optimization_31_0.png)
     
 
 
@@ -736,7 +736,7 @@ for ax in fig.get_axes():
 
 
     
-![png](./Sailing_Route_Optimization_33_0.png)
+![Four-panel grid of boat routes taken across successive training episode ranges, showing movement becoming more deliberate and pattern-following as training progresses](./Sailing_Route_Optimization_33_0.png)
     
 
 
@@ -779,7 +779,7 @@ for ax in fig.get_axes():
 
 
     
-![png](./Sailing_Route_Optimization_35_1.png)
+![Eight-panel grid of the trained agent's routes to waypoints at different points of sail around the boat, showing consistent tacking behavior at each angle](./Sailing_Route_Optimization_35_1.png)
     
 
 

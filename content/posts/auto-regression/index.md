@@ -107,7 +107,7 @@ plt.xlabel("Year")
 
 
     
-![png](./auto_regression_7_1.png)
+![Line plot of the Wolf sunspot number time series from 1700 to 2008, oscillating around a roughly constant level with no long-term trend](./auto_regression_7_1.png)
     
 
 
@@ -174,7 +174,7 @@ plt.xlabel("Lag")
 
 
     
-![png](./auto_regression_13_1.png)
+![Partial autocorrelation function plot of the sunspot training data, showing significant spikes at lag 1 and lag 2 before dropping into the noise band](./auto_regression_13_1.png)
     
 
 
@@ -313,7 +313,7 @@ plt.legend()
 
 
     
-![png](./auto_regression_24_1.png)
+![Line plot comparing the actual sunspot series to the AR(2) model's in-sample fitted values, closely tracking each other](./auto_regression_24_1.png)
     
 
 
@@ -342,7 +342,7 @@ plt.legend()
 
 
     
-![png](./auto_regression_26_1.png)
+![Line plot of the actual sunspot series versus the AR(2) model's 30-year recursive forecast, diverging from actuals as the forecast horizon extends](./auto_regression_26_1.png)
     
 
 

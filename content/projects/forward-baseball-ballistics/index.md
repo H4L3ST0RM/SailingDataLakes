@@ -2,7 +2,7 @@
 authors = ["John C Hale"]
 title = "Forward Baseball Ballistics: Mapping the Power Matrix"
 date = "2026-07-05"
-description = "Flipping the inverse home run calculator around into a forward simulator that maps swing speed, pitch speed, launch angle, and pitch type onto a full ceiling of possible carry distance."
+description = "A forward ballistics simulator mapping swing speed, pitch speed, launch angle, and pitch type onto carry distance."
 math = true
 draft = false
 tags = [
@@ -259,7 +259,7 @@ plt.show()
 
 
     
-![png](./Forward_Baseball_Ballistics_12_0.png)
+![Trajectory plot comparing batted-ball flight paths for a 94 mph fastball versus a 57.5 mph curveball hit with the same swing, each at its own optimal launch angle, with the fence marked at 370 ft](./Forward_Baseball_Ballistics_12_0.png)
     
 
 
@@ -302,7 +302,7 @@ for idx in [0, len(pitch_speeds) // 2, -1]:
 
 
     
-![png](./Forward_Baseball_Ballistics_15_0.png)
+![Heatmap of carry distance across launch angle and pitch speed for a fixed swing speed, with a cyan ridge line tracing the best launch angle at each pitch speed](./Forward_Baseball_Ballistics_15_0.png)
     
 
 

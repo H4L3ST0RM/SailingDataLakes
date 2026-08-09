@@ -291,7 +291,7 @@ plt.title("Batch Gradient Descent Loss over Training")
 
 
     
-![png](./gradient_descent_20_1.png)
+![Line plot of loss (SSE) over batch gradient descent training iterations, dropping quickly at first then leveling off](./gradient_descent_20_1.png)
     
 
 
@@ -402,7 +402,7 @@ plt.title("Predicting Tip from Total Bill")
 
 
     
-![png](./gradient_descent_25_1.png)
+![Scatter plot of tip amount versus total bill with the gradient-descent-fitted regression line overlaid](./gradient_descent_25_1.png)
     
 
 

@@ -4,7 +4,7 @@ title = "K-Means Clustering & Variants"
 date = "2024-04-22"
 lastmod = "2024-05-18"
 
-description = "An overview of how K-Means Clustering Works"
+description = "How K-Means clustering works: the algorithm behind centroid-based unsupervised clustering, a from-scratch implementation, and how to choose k."
 math = true
 draft = false
 tags = [
@@ -341,7 +341,7 @@ plt.ylabel("petal width (cm)")
 
 
     
-![png](./k_means_17_1.png)
+![Scatter plot of iris petal length versus petal width colored by k=3 cluster assignment, with centroids marked in red](./k_means_17_1.png)
     
 
 
@@ -503,7 +503,7 @@ plt.grid(True)
 
 
     
-![png](./k_means_31_0.png)
+![Elbow plot of inertia versus k, showing a joint (elbow) around k=4](./k_means_31_0.png)
     
 
 
@@ -541,7 +541,7 @@ plt.ylabel("petal width (cm)")
 
 
     
-![png](./k_means_34_1.png)
+![Scatter plot of iris petal length versus petal width with k=4 clusters, seed 2, showing two clusters initialized too close together in the bottom left](./k_means_34_1.png)
     
 
 
@@ -581,7 +581,7 @@ plt.ylabel("petal width (cm)")
 
 
     
-![png](./k_means_38_1.png)
+![Scatter plot of iris petal length versus petal width with k=4 clusters after reinitializing with seed 4, showing improved but still imperfect separation](./k_means_38_1.png)
     
 
 
