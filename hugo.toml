@@ -60,8 +60,8 @@ customRemoteJS = []
 # fileDownloadsTracking = true
 
 # If you want to use goatcounter(https://goatcounter.com) for analytics, add this section
-# [params.goatCounter]
-# code = "code"
+[params.goatCounter]
+code = "sailingdatalakes"
 
 # If you want to use Cloudflare Web Analytics(https://cloudflare.com) for analytics, add this section
 # [params.cloudflare]
