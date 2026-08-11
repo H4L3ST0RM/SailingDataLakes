@@ -184,6 +184,13 @@ name = "Projects"
 weight = 3
 url = "projects/"
 
+[[languages.en.menu.main]]
+name = "RSS"
+weight = 4
+url = "index.xml"
+rel = "alternate"
+type = "application/rss+xml"
+
 #[[languages.en.menu.main]]
 #name = "Resume"
 #weight = 3
