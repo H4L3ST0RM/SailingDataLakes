@@ -1,6 +1,26 @@
 // Wide KaTeX display equations (e.g. matrices) can exceed the content
 // column width. Let them scroll horizontally instead of overflowing the page.
+// Unlike code blocks, KaTeX renders as bare inline markup with no box, so a
+// clipped equation used to look broken rather than scrollable on mobile —
+// give it the same boxed treatment as code blocks (padding, background,
+// rounded corners) plus a visible scrollbar thumb so it reads as a
+// scrollable strip instead of cut-off content.
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+  padding: 1rem 1.2rem;
+  border-radius: 0.6rem;
+  background-color: rgba(127, 127, 127, 0.08);
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(127, 127, 127, 0.5);
+    border-radius: 3px;
+  }
 }
