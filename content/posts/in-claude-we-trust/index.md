@@ -20,6 +20,8 @@ categories = [
 
 Everyone I work with uses Claude now — generating analyses, writing up docs, building the case for or against a decision. It's made us faster. It's also surfaced a set of problems that I think the industry, broadly, hasn't caught up to yet.
 
+*A note before the examples below: they're composited from patterns I've seen across multiple companies and teams, with identifying details changed - none of them describe a single real event, decision, or employer.*
+
 I've noticed two flavors of this across teams I've worked with. More experienced people tend to present AI-assisted analysis with enough confidence that nobody thinks to double-check it. Less experienced folks get the opposite treatment — they present, get a round of questions, and then have to scramble to reconstruct a result that isn't easy to recreate. I started using git for my own work from day one, so I've mostly sidestepped this myself — but it's a pattern worth naming, not a complaint about any one team.
 
 The trust question comes up often, too. It's routine to hear "this was generated with Claude" tacked onto a report, and in practice that caveat rarely triggers a deeper conversation about how the analysis was actually produced. Everyone's encouraged to use these tools — as they should be — but "we all use it" isn't the same thing as "we can all verify it." In Claude we trust, right?
