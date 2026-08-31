@@ -23,7 +23,7 @@ my own understanding of these algorithms, and it's grown into something I
 hope is useful to others working in the space too.
 
 Outside of work, I spend most of my time with my family. We're big
-on hobbies, such as sailing, kayaking, cooking, fishing, swimming,
+on hobbies, such as sailing, baseball, kayaking, cooking, fishing, swimming,
 and shark tooth hunting! When I can, I'll try and include these activities
 in my projects.
 
